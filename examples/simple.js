@@ -13,17 +13,17 @@ var tooltip = d3.tip()
     .attr('class', 'd3-tip')
     .offset([-10, +110])
     .html(function(d) {
-        msc_type = d.MSC_Type;
+        msc_type = d.Probe;
         // 2 decimal places on the display only
         // 95% CI [0.66,0.71] 
         // MSC 100/100
-        total = d.total_subsamplings;
+        total = d.total_samplings;
         msc_call = d.MSC_calls; 
         prediction = round_to_two_decimal_places(d[y_column]);
         lwr = round_to_two_decimal_places(d.lwr);
         upr = round_to_two_decimal_places(d.upr);
         temp = 
-            "Sample: " + d.Replicate_Group_ID +"<br/>"+
+            "Sample: " + d.Sample_ID +"<br/>"+
             "Rohart Score [CI]: " + prediction + " [" + lwr + ";" + upr +"]<br/>"+
             "MSC predicted "+msc_call+"/"+total+" iterations<br/>"
         return temp; 
@@ -60,7 +60,7 @@ d3.tsv(data_url,function (error,data){
         background_stroke_width:  "1px",
         circle_radius:5,  // for the scatter points
         data: data,
-        data_columns_for_colour: ["MSC_calls","total_subsamplings"], //d.MSC_calls
+        data_columns_for_colour: ["MSC_calls","ds_id"], //d.MSC_calls
         domain_colours : ["#FFFFFF","#7f3f98"],
         error_bar_width:10, 
         height: 1020,
@@ -69,7 +69,7 @@ d3.tsv(data_url,function (error,data){
         legend_class: "legend",
         legend_range: [0,100],
         margin:{top: 180, right: 120, bottom: 530, left: 200},
-        sample_type_order: "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
+        sample_type_order: "hONS, DermalFibroblast", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
         show_horizontal_line_labels: true,
         subtitle1: subtitle1,
         subtitle2: subtitle2,
@@ -82,7 +82,7 @@ d3.tsv(data_url,function (error,data){
         width:width, // suggest 50 per sample
         x_axis_text_angle:-45, 
         x_axis_title: "Samples",
-        x_column:'Replicate_Group_ID',
+        x_column: 'Sample_ID',//'Replicate_Group_ID',
         x_middle_title: 325,
         y_axis_title: "Rohart Score",
         y_column:'prediction' // d.prediction
