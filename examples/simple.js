@@ -6,7 +6,7 @@ function round_to_two_decimal_places(num){
 }
 
 // have to set this up here so that the tooltip can use these values
-var horizontal_lines = {'lwr':0.4337,'upr':0.5169};
+var horizontal_lines = {'Standard_Deviation':0.4337,'Standard_Deviation':0.5169};
 
 // this tooltip function is passed into the graph via the tooltip
 var tooltip = d3.tip()
@@ -20,8 +20,8 @@ var tooltip = d3.tip()
         total = d.total_samplings;
         msc_call = d.MSC_calls; 
         prediction = round_to_two_decimal_places(d[y_column]);
-        lwr = round_to_two_decimal_places(d.lwr);
-        upr = round_to_two_decimal_places(d.upr);
+        lwr = round_to_two_decimal_places(d.Expression_Value - d.Standard_Deviation);
+        upr = round_to_two_decimal_places(d.Expression_Value + d.Standard_Deviation);
         temp = 
             "Sample: " + d.Sample_ID +"<br/>"+
             "Rohart Score [CI]: " + prediction + " [" + lwr + ";" + upr +"]<br/>"+
@@ -29,7 +29,7 @@ var tooltip = d3.tip()
         return temp; 
     });
 
-data_url= '../data/dataset6037.rohart.MSC.tsv';
+data_url= '../data/ds_id_2000_scatter_pdgfd.tsv';
 d3.tsv(data_url,function (error,data){
     
     count = 0; 
@@ -85,7 +85,7 @@ d3.tsv(data_url,function (error,data){
         x_column: 'Sample_ID',//'Replicate_Group_ID',
         x_middle_title: 325,
         y_axis_title: "Rohart Score",
-        y_column:'prediction' // d.prediction
+        y_column: 'Expression_Value'//'prediction' // d.prediction
     }
 
     var instance = new app(options);
