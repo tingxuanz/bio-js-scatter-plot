@@ -24,12 +24,12 @@ var tooltip = d3.tip()
         upr = round_to_two_decimal_places(d.Expression_Value + d.Standard_Deviation);
         temp = 
             "Sample: " + d.Sample_ID +"<br/>"+
-            "Rohart Score [CI]: " + prediction + " [" + lwr + ";" + upr +"]<br/>"+
-            "MSC predicted "+msc_call+"/"+total+" iterations<br/>"
+            "Log2 Expression: " + prediction + " [" + lwr + ";" + upr +"]<br/>"
+           // "MSC predicted "+msc_call+"/"+total+" iterations<br/>"
         return temp; 
     });
 
-data_url= '../data/ds_id_2000_scatter_pdgfd.tsv';
+data_url= /*'../data/ds_id_2000_scatter_stat1.tsv'*/'../data/ds_id_2000_scatter_pdgfd.tsv';
 d3.tsv(data_url,function (error,data){
     
     count = 0; 
@@ -69,7 +69,7 @@ d3.tsv(data_url,function (error,data){
         legend_class: "legend",
         legend_range: [0,100],
         margin:{top: 180, right: 120, bottom: 530, left: 200},
-        sample_type_order: "hONS, DermalFibroblast", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
+        sample_type_order: "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
         show_horizontal_line_labels: true,
         subtitle1: subtitle1,
         subtitle2: subtitle2,
@@ -84,7 +84,7 @@ d3.tsv(data_url,function (error,data){
         x_axis_title: "Samples",
         x_column: 'Sample_ID',//'Replicate_Group_ID',
         x_middle_title: 325,
-        y_axis_title: "Rohart Score",
+        y_axis_title: "Log2 Expression",
         y_column: 'Expression_Value'//'prediction' // d.prediction
     }
 
