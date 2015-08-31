@@ -64,7 +64,7 @@ d3.tsv(data_url,function (error,data){
         error_bar_width:10, 
         height: 1500,
         horizontal_line_value_column: 'value',
-        horizontal_lines: horizontal_lines,  // this gets turned into an array of objects
+//        horizontal_lines: horizontal_lines,  // this gets turned into an array of objects
         legend_class: "legend",
         legend_range: [0,100],
         margin:{top: 180, right: 120, bottom: 530, left: 200},
