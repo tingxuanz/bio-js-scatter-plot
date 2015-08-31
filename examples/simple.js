@@ -41,7 +41,7 @@ d3.tsv(data_url,function (error,data){
 
     });
 
-    title = "Rohart MSC Score for Dataset XYZ";
+    title = "Scatter Plot";
     subtitle1 = "Subtitle"
     subtitle2 = "Subtitle"
     target = rootDiv;
@@ -82,7 +82,7 @@ d3.tsv(data_url,function (error,data){
         x_axis_text_angle:-45, 
         x_axis_title: "Samples",
         x_column: 'Sample_ID',//'Replicate_Group_ID',
-        x_middle_title: 325,
+        x_middle_title: 500,//325
         y_axis_title: "Log2 Expression",
         y_column: 'Expression_Value'//'prediction' // d.prediction
     }
