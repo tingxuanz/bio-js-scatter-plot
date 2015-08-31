@@ -6,7 +6,7 @@ function round_to_two_decimal_places(num){
 }
 
 // have to set this up here so that the tooltip can use these values
-var horizontal_lines = {'Standard_Deviation':0.4337,'Standard_Deviation':0.5169};
+//var horizontal_lines = {'Standard_Deviation':0.4337,'Standard_Deviation':0.5169};
 
 // this tooltip function is passed into the graph via the tooltip
 var tooltip = d3.tip()
@@ -17,27 +17,26 @@ var tooltip = d3.tip()
         // 2 decimal places on the display only
         // 95% CI [0.66,0.71] 
         // MSC 100/100
-        total = d.total_samplings;
-        msc_call = d.MSC_calls; 
-        prediction = round_to_two_decimal_places(d[y_column]);
+      /*  total = d.total_samplings;
+        msc_call = d.MSC_calls; */
+        Expression_Value = round_to_two_decimal_places(d[y_column]);
         lwr = round_to_two_decimal_places(d.Expression_Value - d.Standard_Deviation);
         upr = round_to_two_decimal_places(d.Expression_Value + d.Standard_Deviation);
         temp = 
             "Sample: " + d.Sample_ID +"<br/>"+
-            "Log2 Expression: " + prediction + " [" + lwr + ";" + upr +"]<br/>"
+            "Log2 Expression: " + Expression_Value + " [" + lwr + ";" + upr +"]<br/>"
            // "MSC predicted "+msc_call+"/"+total+" iterations<br/>"
         return temp; 
     });
 
-data_url= /*'../data/ds_id_2000_scatter_stat1.tsv'*/'../data/ds_id_2000_scatter_pdgfd.tsv';
+data_url= '../data/ds_id_2000_scatter_stat1.tsv';//'../data/ds_id_2000_scatter_pdgfd.tsv';
 d3.tsv(data_url,function (error,data){
     
     count = 0; 
     data.forEach(function(d){
         // ths + on the front converts it into a number just in case
-        d.lwr = +d.lwr;
-        d.prediction = +d.prediction;
-        d.upr = +d.upr;
+        d.Expression_Value = +d.Expression_Value;
+        d.Standard_Deviation = +d.Standard_Deviation;
         count++;
 
     });
@@ -58,12 +57,12 @@ d3.tsv(data_url,function (error,data){
         background_colour: "white",
         background_stroke_colour:  "black",
         background_stroke_width:  "1px",
-        circle_radius:5,  // for the scatter points
+        circle_radius:4.5,  // for the scatter points
         data: data,
         data_columns_for_colour: ["MSC_calls","ds_id"], //d.MSC_calls
         domain_colours : ["#FFFFFF","#7f3f98"],
         error_bar_width:10, 
-        height: 1020,
+        height: 1500,
         horizontal_line_value_column: 'value',
         horizontal_lines: horizontal_lines,  // this gets turned into an array of objects
         legend_class: "legend",
