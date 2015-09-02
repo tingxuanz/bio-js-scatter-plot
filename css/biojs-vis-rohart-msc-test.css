@@ -24,7 +24,17 @@ text{
     
     stroke: lightgrey;
     opacity: 0.7;
+    color: black;
     
+}
+
+.grid text{
+    font-family:sans-serif;
+    font-size: 16px;
+    stroke: black;
+    color: black;
+    shape-rendering: crispEdges;
+
 }
 
 .grid path {
@@ -61,3 +71,6 @@ g.x_axis g.tick line {
     opacity: 0;
 }
 
+g.tick text {
+
+}
