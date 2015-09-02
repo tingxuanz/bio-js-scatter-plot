@@ -29,8 +29,8 @@ var tooltip = d3.tip()
         return temp; 
     });
 
-//data_url= '../data/ds_id_5003_scatter_gata3.tsv';
-data_url = '../data/ds_id_2000_scatter_stat1.tsv';
+data_url= '../data/ds_id_5003_scatter_gata3.tsv';
+//data_url = '../data/ds_id_2000_scatter_stat1.tsv';
 //data_url = '../data/ds_id_2000_scatter_pdgfd.tsv';
 d3.tsv(data_url,function (error,data){
     
@@ -50,7 +50,7 @@ d3.tsv(data_url,function (error,data){
 
     // can always use just a straight value, but it's nicer when you calculate
     // based off the number of samples that you have
-    width = data.length*30 + 200;
+    width = data.length*5 + 200;
     if (width < 1000){
         width = 1000;
     }
@@ -71,7 +71,7 @@ d3.tsv(data_url,function (error,data){
         legend_class: "legend",
         legend_range: [0,100],
         margin:{top: 180, right: 120, bottom: 530, left: 200},
-        med: 8.33,
+        med: 8.93,
         sample_type_order: "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
         show_horizontal_line_labels: true,
         subtitle1: subtitle1,
