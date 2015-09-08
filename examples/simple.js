@@ -13,7 +13,7 @@ var tooltip = d3.tip()
     .attr('class', 'd3-tip')
     .offset([-10, +110])
     .html(function(d) {
-        msc_type = d.Probe;
+        probe = d.Probe;
         // 2 decimal places on the display only
         // 95% CI [0.66,0.71] 
         // MSC 100/100
