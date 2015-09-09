@@ -68,6 +68,11 @@ text.title {
 .legend {
     font-size: 12px;
 }
+path { 
+    fill:none;  
+    stroke: black;
+    stroke-width:1;
+}
 
 rect {
     stroke-width: 2;
