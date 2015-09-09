@@ -29,15 +29,19 @@ var tooltip = d3.tip()
         return temp; 
     });
 
-//data_url= '../data/ds_id_5003_scatter_gata3.tsv';
+data_url= '../data/ds_id_5003_scatter_gata3.tsv';
 //data_url = '../data/ds_id_2000_scatter_stat1.tsv';
-data_url = '../data/ds_id_2000_scatter_pdgfd.tsv';
+//data_url = '../data/ds_id_2000_scatter_pdgfd.tsv';
 d3.tsv(data_url,function (error,data){
     max = 0; 
     min = 0;
     probe_name_length = 0;
     number_of_increments = 0;
     count = 0; 
+    //make an array to store the number of probes for the legend
+    probes = new Array();
+    probe_count = 0;
+    long_legend = 0;
     data.forEach(function(d){
         // ths + on the front converts it into a number just in case
         d.Expression_Value = +d.Expression_Value;
@@ -55,6 +59,10 @@ d3.tsv(data_url,function (error,data){
         if((d.Probe).length > probe_name_length){
             probe_name_length = (d.Probe).length;
         }
+        if($.inArray(d.Probe, probes) == -1){
+            probes.push(d.Probe);
+            probe_count++;
+        }
         count++;
 
     });
@@ -68,7 +76,13 @@ d3.tsv(data_url,function (error,data){
     }else{
         probe_name_length = 450;
     }
+    if(probe_count > 40){
+        probe_name_length = 2*probe_name_length;
+        long_legend = 1;
+    }
+    probe_count = probe_count;
     probe_name_length = probe_name_length;
+    long_legend = long_legend;
     title = "Scatter Plot";
     subtitle1 = "Subtitle"
     subtitle2 = "Subtitle"
@@ -100,11 +114,13 @@ d3.tsv(data_url,function (error,data){
         increment: number_of_increments,
         legend_range: [0,100],
         line_stroke_width: "2px",
+        long_legend: long_legend,
         margin_legend: width - 190,
         margin:{top: 180, left:200, bottom: 530, right: probe_name_length},
         med: 8.93,
         med_colour: "purple",
         probe_length: probe_name_length,
+        probe_count: probe_count,
         sample_type_order: "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
         show_horizontal_line_labels: true,
         subtitle1: subtitle1,
