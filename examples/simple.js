@@ -26,8 +26,8 @@ var tooltip = d3.tip()
         return temp; 
     });
 
-//data_url= '../data/ds_id_5003_scatter_gata3.tsv';
-data_url = '../data/ds_id_2000_scatter_stat1.tsv';
+data_url= '../data/ds_id_5003_scatter_gata3.tsv';
+//data_url = '../data/ds_id_2000_scatter_stat1.tsv';
 //data_url = '../data/ds_id_2000_scatter_pdgfd.tsv';
 d3.tsv(data_url,function (error,data){
     max = 0; 
@@ -114,7 +114,9 @@ d3.tsv(data_url,function (error,data){
         margin:{top: 180, left:200, bottom: 530, right: probe_name_length},
         probe_length: probe_name_length,
         probe_count: probe_count,
-        sample_type_order: "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
+        //sample type order indicates whether or not the samplese need to be represented in a specific order
+        //if no order is given then the order from the data set is taken
+        sample_type_order:"none",// "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
         show_horizontal_line_labels: true,
         subtitle1: subtitle1,
         subtitle2: subtitle2,
