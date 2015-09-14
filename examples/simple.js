@@ -29,8 +29,8 @@ var tooltip = d3.tip()
         return temp; 
     });
 
-data_url= '../data/ds_id_5003_scatter_gata3.tsv';
-//data_url = '../data/ds_id_2000_scatter_stat1.tsv';
+//data_url= '../data/ds_id_5003_scatter_gata3.tsv';
+data_url = '../data/ds_id_2000_scatter_stat1.tsv';
 //data_url = '../data/ds_id_2000_scatter_pdgfd.tsv';
 d3.tsv(data_url,function (error,data){
     max = 0; 
@@ -108,7 +108,7 @@ d3.tsv(data_url,function (error,data){
         error_bar_width:5,
         error_dividor:100,//100 means error bars will not show when error < 1% value 
         height: 1500,
-    //    horizontal_lines: horizontal_lines,
+        horizontal_lines: [["Detection Threshold", "green", 5], ["Median", , 8.93]],
         horizontal_line_value_column: 'value',
         legend_class: "legend",
         increment: number_of_increments,
