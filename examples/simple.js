@@ -15,14 +15,11 @@ var tooltip = d3.tip()
     .html(function(d) {
         probe = d.Probe;
         // 2 decimal places on the display only
-        // 95% CI [0.66,0.71] 
-        // MSC 100/100
-      /*  total = d.total_samplings;
-        msc_call = d.MSC_calls; */
         Expression_Value = round_to_two_decimal_places(d[y_column]);
         lwr = round_to_two_decimal_places(d.Expression_Value - d.Standard_Deviation);
         upr = round_to_two_decimal_places(d.Expression_Value + d.Standard_Deviation);
         temp = 
+            "Probe: " + d.Probe + "<br/>" +
             "Sample: " + d.Sample_ID +"<br/>"+
             "Log2 Expression: " + Expression_Value + " [" + lwr + ";" + upr +"]<br/>"
            // "MSC predicted "+msc_call+"/"+total+" iterations<br/>"
@@ -74,7 +71,7 @@ d3.tsv(data_url,function (error,data){
     if(probe_name_length > 22){
         probe_name_length = 15* probe_name_length;
     }else{
-        probe_name_length = 450;
+        probe_name_length = 500;
     }
     if(probe_count > 40){
         probe_name_length = 2*probe_name_length;
@@ -101,13 +98,11 @@ d3.tsv(data_url,function (error,data){
         background_stroke_width:  "1px",
         circle_radius:3.5,  // for the scatter points
         data: data,
-        data_columns_for_colour: ["MSC_calls","ds_id"], //d.MSC_calls
         domain_colours : ["#FFFFFF","#7f3f98"],
-        dt: 5,
-        dt_colour: "green",
         error_bar_width:5,
         error_dividor:100,//100 means error bars will not show when error < 1% value 
         height: 1500,
+        //horizontal lines takes a name, colour and the yvalue. If no colour is given one is chosen at random
         horizontal_lines: [["Detection Threshold", "green", 5], ["Median", , 8.93]],
         horizontal_line_value_column: 'value',
         legend_class: "legend",
@@ -117,8 +112,6 @@ d3.tsv(data_url,function (error,data){
         long_legend: long_legend,
         margin_legend: width - 190,
         margin:{top: 180, left:200, bottom: 530, right: probe_name_length},
-        med: 8.93,
-        med_colour: "purple",
         probe_length: probe_name_length,
         probe_count: probe_count,
         sample_type_order: "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
@@ -138,7 +131,8 @@ d3.tsv(data_url,function (error,data){
         x_column: 'Sample_ID',//'Replicate_Group_ID',
         x_middle_title: 500,//325
         y_axis_title: "Log2 Expression",
-        y_column: 'Expression_Value'//'prediction' // d.prediction
+        y_column: 'Expression_Value',//'prediction' // d.prediction
+        y_lines: "no", //whether we can the horizontal lines or not
     }
 
     var instance = new app(options);
