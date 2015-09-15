@@ -49,6 +49,7 @@ d3.tsv(data_url,function (error,data){
     probes = new Array();
     probe_count = 0;
     long_legend = 0;
+    colour_count = 0;
     color = d3.scale.category20();
     data.forEach(function(d){
         // ths + on the front converts it into a number just in case
@@ -77,11 +78,11 @@ d3.tsv(data_url,function (error,data){
     for(i = 0; i < probe_count; i++){
         probes[i] = [];
         probes[i][0] = probes_types[i];
-        colour_count = i;
-        if(colour_count == 40){
+        colour_count++;
+        if(colour_count == 39){
             colour_count = 0;
         }
-        probes[i][1] = colours[i];
+        probes[i][1] = colours[colour_count];
     }
     number_of_increments = max - min;
     //turn number of increments into a whole number
