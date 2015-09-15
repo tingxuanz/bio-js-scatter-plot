@@ -6,9 +6,9 @@ function round_to_two_decimal_places(num){
 }
 
 
-    var colours = ["Aqua", "Blue", "BlueViolet","Brown","BurlyWood","CadetBlue",
-"Chartreuse","Chocolate","Coral","CornflowerBlue","Crimson","Cyan","DarkBlue",
-"DarkGoldenRod","DarkGray","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen",
+    var colours = ["Orange", "Blue", "Crimson", "BlueViolet","Brown", "Deeppink", "BurlyWood","CadetBlue",
+"Chartreuse","Chocolate","Coral","CornflowerBlue","Crimson","Cyan", "Red", "DarkBlue",
+"DarkGoldenRod","DarkGray", "Tomato", "Violet","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen",
 "DarkOrange","DarkOrchid","DarkRed","DarkSalmon","DarkSlateBlue","DarkTurquoise",
 "DarkViolet","DeepPink","DeepSkyBlue","DodgerBlue","FireBrick","ForestGreen","Fuchsia",
 "Gold","GoldenRod","Green","GreenYellow","HotPink","IndianRed","Indigo"];
@@ -35,8 +35,8 @@ var tooltip = d3.tip()
         return temp; 
     });
 
-data_url= '../data/ds_id_5003_scatter_gata3.tsv';
-//data_url = '../data/ds_id_2000_scatter_stat1.tsv';
+//data_url= '../data/ds_id_5003_scatter_gata3.tsv';
+data_url = '../data/ds_id_2000_scatter_stat1.tsv';
 //data_url = '../data/ds_id_2000_scatter_pdgfd.tsv';
 d3.tsv(data_url,function (error,data){
     max = 0; 
@@ -143,6 +143,7 @@ i*/
         long_legend: long_legend,
         margin_legend: width - 190,
         margin:{top: 180, left:200, bottom: 530, right: 300},
+        number_of_colours: 39,
         probe_length: probe_name_length,
         probe_count: probe_count,
         probes: probes,
