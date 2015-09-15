@@ -78,11 +78,12 @@ d3.tsv(data_url,function (error,data){
     for(i = 0; i < probe_count; i++){
         probes[i] = [];
         probes[i][0] = probes_types[i];
-        colour_count++;
+      //  colour_count++;
         if(colour_count == 39){
             colour_count = 0;
         }
         probes[i][1] = colours[colour_count];
+        colour_count++;
     }
     number_of_increments = max - min;
     //turn number of increments into a whole number
