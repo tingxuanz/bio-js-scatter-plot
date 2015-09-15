@@ -5,6 +5,15 @@ function round_to_two_decimal_places(num){
     return new_num;
 }
 
+
+    var colours = ["Aqua", "Blue", "BlueViolet","Brown","BurlyWood","CadetBlue",
+"Chartreuse","Chocolate","Coral","CornflowerBlue","Crimson","Cyan","DarkBlue",
+"DarkGoldenRod","DarkGray","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen",
+"DarkOrange","DarkOrchid","DarkRed","DarkSalmon","DarkSlateBlue","DarkTurquoise",
+"DarkViolet","DeepPink","DeepSkyBlue","DodgerBlue","FireBrick","ForestGreen","Fuchsia",
+"Gold","GoldenRod","Green","GreenYellow","HotPink","IndianRed","Indigo"];
+
+
 // have to set this up here so that the tooltip can use these values
 //var horizontal_lines = {'Standard_Deviation':0.4337,'Standard_Deviation':0.5169};
 
@@ -36,9 +45,11 @@ d3.tsv(data_url,function (error,data){
     number_of_increments = 0;
     count = 0; 
     //make an array to store the number of probes for the legend
+    probes_types = new Array();
     probes = new Array();
     probe_count = 0;
     long_legend = 0;
+    color = d3.scale.category20();
     data.forEach(function(d){
         // ths + on the front converts it into a number just in case
         d.Expression_Value = +d.Expression_Value;
@@ -56,13 +67,22 @@ d3.tsv(data_url,function (error,data){
         if((d.Probe).length > probe_name_length){
             probe_name_length = (d.Probe).length;
         }
-        if($.inArray(d.Probe, probes) == -1){
-            probes.push(d.Probe);
+        if($.inArray(d.Probe, probes_types) == -1){
+            probes_types.push(d.Probe);
             probe_count++;
         }
         count++;
 
     });
+    for(i = 0; i < probe_count; i++){
+        probes[i] = [];
+        probes[i][0] = probes_types[i];
+        colour_count = i;
+        if(colour_count == 40){
+            colour_count = 0;
+        }
+        probes[i][1] = colours[i];
+    }
     number_of_increments = max - min;
     //turn number of increments into a whole number
     number_of_increments |= 0;
@@ -77,6 +97,7 @@ d3.tsv(data_url,function (error,data){
         probe_name_length = 2*probe_name_length;
         long_legend = 1;
     }
+    probes = probes;
     probe_count = probe_count;
     probe_name_length = probe_name_length;
     long_legend = long_legend;
@@ -92,11 +113,19 @@ d3.tsv(data_url,function (error,data){
         width = 1000;
     }
 
+   /* var colours = ["Aqua", "Blue", "BlueViolet","Brown","BurlyWood","CadetBlue",
+"Chartreuse","Chocolate","Coral","CornflowerBlue","Crimson","Cyan","DarkBlue",
+"DarkGoldenRod","DarkGray","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen",
+"DarkOrange","DarkOrchid","DarkRed","DarkSalmon","DarkSlateBlue","DarkTurquoise",
+"DarkViolet","DeepPink","DeepSkyBlue","DodgerBlue","FireBrick","ForestGreen","Fuchsia",
+"Gold","GoldenRod","Green","GreenYellow","HotPink","IndianRed","Indigo"];
+i*/
     var options = {
         background_colour: "white",
         background_stroke_colour:  "black",
         background_stroke_width:  "1px",
         circle_radius:3.5,  // for the scatter points
+        colour: colours,
         data: data,
         domain_colours : ["#FFFFFF","#7f3f98"],
         error_bar_width:5,
@@ -111,9 +140,10 @@ d3.tsv(data_url,function (error,data){
         line_stroke_width: "2px",
         long_legend: long_legend,
         margin_legend: width - 190,
-        margin:{top: 180, left:200, bottom: 530, right: probe_name_length},
+        margin:{top: 180, left:200, bottom: 530, right: 300},
         probe_length: probe_name_length,
         probe_count: probe_count,
+        probes: probes,
         //sample type order indicates whether or not the samplese need to be represented in a specific order
         //if no order is given then the order from the data set is taken
         sample_type_order:"none",// "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
