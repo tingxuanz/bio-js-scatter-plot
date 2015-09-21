@@ -17,10 +17,21 @@ function round_to_two_decimal_places(num){
 // have to set this up here so that the tooltip can use these values
 //var horizontal_lines = {'Standard_Deviation':0.4337,'Standard_Deviation':0.5169};
 
+var tip = d3.tip()
+    .attr('class', 'd3-tip')
+    .offset([0, -110])
+    .html(function(d) {
+        sample_type = d.sample_type;
+        temp =
+            "Sample Type: " +  sample_type + "<br/>"
+           // "MSC predicted "+msc_call+"/"+total+" iterations<br/>"
+        return temp;
+    });
+
 // this tooltip function is passed into the graph via the tooltip
 var tooltip = d3.tip()
     .attr('class', 'd3-tip')
-    .offset([-10, +110])
+    .offset([0, +110])
     .html(function(d) {
         probe = d.Probe;
         // 2 decimal places on the display only
@@ -162,6 +173,7 @@ i*/
         target: target,
         title: title,
         title_class: "title",
+        tip: tip,
         tooltip: tooltip, // using d3-tips
         unique_id: "chip_id",
         watermark:"http://www1.stemformatics.org/img/logo.gif",
