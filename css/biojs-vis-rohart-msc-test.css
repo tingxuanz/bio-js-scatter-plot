@@ -14,6 +14,15 @@ word-wrap: break-word;
 opacity: 100;
 }
 
+.bar {
+  fill: white;
+}
+
+.bar:hover {
+  fill: #FFA62F;
+    opacity: 0.5;
+}
+
 table, th, td {
     border: 0px;
     padding: 5px;

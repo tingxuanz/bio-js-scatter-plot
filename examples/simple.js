@@ -35,8 +35,8 @@ var tooltip = d3.tip()
         return temp; 
     });
 
-//data_url= '../data/ds_id_5003_scatter_gata3.tsv';
-data_url = '../data/ds_id_2000_scatter_stat1.tsv';
+data_url= '../data/ds_id_5003_scatter_gata3.tsv';
+//data_url = '../data/ds_id_2000_scatter_stat1.tsv';
 //data_url = '../data/ds_id_2000_scatter_pdgfd.tsv';
 d3.tsv(data_url,function (error,data){
     max = 0; 
@@ -49,8 +49,10 @@ d3.tsv(data_url,function (error,data){
     probes = new Array();
     probe_count = 0;
     long_legend = 0;
+    //need to put in the number of colours that are being used (so that it
+    //can reiitterate over them again if necesary
+    number_of_colours = 39;
     colour_count = 0;
-    color = d3.scale.category20();
     data.forEach(function(d){
         // ths + on the front converts it into a number just in case
         d.Expression_Value = +d.Expression_Value;
@@ -79,7 +81,7 @@ d3.tsv(data_url,function (error,data){
         probes[i] = [];
         probes[i][0] = probes_types[i];
       //  colour_count++;
-        if(colour_count == 39){
+        if(colour_count == number_of_colours){
             colour_count = 0;
         }
         probes[i][1] = colours[colour_count];
@@ -111,6 +113,7 @@ d3.tsv(data_url,function (error,data){
     // can always use just a straight value, but it's nicer when you calculate
     // based off the number of samples that you have
     width = data.length*3 + 500;
+    horizontal_grid_lines = width;
     if (width < 1000){
         width = 1000;
     }
@@ -136,6 +139,8 @@ i*/
         //horizontal lines takes a name, colour and the yvalue. If no colour is given one is chosen at random
         horizontal_lines: [["Detection Threshold", "green", 5], ["Median", , 8.93]],
         horizontal_line_value_column: 'value',
+        //to have horizontal grid lines = width (to span accross the grid), otherwise = 0
+        horizontal_grid_lines: width,
         legend_class: "legend",
         increment: number_of_increments,
         legend_range: [0,100],
@@ -167,7 +172,7 @@ i*/
         x_middle_title: 500,//325
         y_axis_title: "Log2 Expression",
         y_column: 'Expression_Value',//'prediction' // d.prediction
-        y_lines: "no", //whether we can the horizontal lines or not
+        y_lines: "yes"
     }
 
     var instance = new app(options);
