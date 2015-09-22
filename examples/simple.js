@@ -6,7 +6,7 @@ function round_to_two_decimal_places(num){
 }
 
 
-    var colours = ["Orange", "Blue", "Crimson", "BlueViolet","Brown", "Deeppink", "BurlyWood","CadetBlue",
+    var colours = ["OrangeRed","LimeGreen", "Blue","BlueViolet","Brown", "Deeppink", "BurlyWood","CadetBlue",
 "Chartreuse","Chocolate","Coral","CornflowerBlue","Crimson","Cyan", "Red", "DarkBlue",
 "DarkGoldenRod","DarkGray", "Tomato", "Violet","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen",
 "DarkOrange","DarkOrchid","DarkRed","DarkSalmon","DarkSlateBlue","DarkTurquoise",
@@ -19,7 +19,7 @@ function round_to_two_decimal_places(num){
 
 var tip = d3.tip()
     .attr('class', 'd3-tip')
-    .offset([0, -110])
+    .offset([0, 0])
     .html(function(d) {
         sample_type = d.sample_type;
         temp =
