@@ -9,9 +9,19 @@ z-index: 11000;
 position: absolute;
 color: #5a5a5a;
 background-color: #FFF;
-border: 1px solid #000;
+border: 1px solid lightgrey;
 word-wrap: break-word;
 opacity: 100;
+}
+
+.x_axis_diagonal_labels:hover{
+    fill: orange;
+}
+
+#legend_btn {
+    font:20px sans-serif;
+    background: white;
+    color: #FF3300;
 }
 
 .bar {
