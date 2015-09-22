@@ -1,5 +1,5 @@
 // if you don't specify a html file, the sniper will generate a div with id "rootDiv"
-var app = require("biojs-vis-rohart-msc-test");
+var app = require("biojs-vis-scatter-plot");
 function round_to_two_decimal_places(num){
     new_num = Math.round(num * 100) / 100;
     return new_num;
@@ -168,11 +168,5 @@ d3.tsv(data_url,function (error,data){
     // Extract the data as SVG text string
     var svg_xml = (new XMLSerializer).serializeToString(svg);
 
-/*
-    var form = document.getElementById("svgform");
-    form['output_format'].value = output_format;
-    form['data'].value = svg_xml ;
-    form.submit();
-*/
 }); 
 

@@ -1,32 +1,32 @@
 {
-  "name": "biojs-vis-rohart-msc-test",
-  "description": "BioJS component to provide a graph of the Rohart MSC Test hosted in Stemformatics",
-  "version": "0.4.0",
-  "homepage": "https://github.com/rowlandm/biojs-vis-rohart-msc-test",
+  "name": "biojs-vis-scatter-plot",
+  "description": "BioJS component to provide a scatter plot graph hosted in Stemformatics",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ArianeMora/bio-js-scatter-plot",
   "author": {
-    "name": "rowlandm",
-    "email": "rowland.mosbergen@gmail.com"
+    "name": "ArianeMora",
+    "email": "ariane.mora@uq.net.au"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/rowlandm/biojs-vis-rohart-msc-test.git"
+    "url": "https://github.com/ArianeMora/bio-js-scatter-plot.git"
   },
   "bugs": {
-    "url": "https://github.com/rowlandm/biojs-vis-rohart-msc-test/issues"
+    "url": "https://github.com/ArianeMora/bio-js-scatter-plot/issues"
   },
   "licenses": [
     {
       "type": "Apache 2",
-      "url": "https://github.com/rowlandm/biojs-vis-rohart-msc-test/blob/master/LICENSE"
+      "url": "https://github.com/ArianeMora/bio-js-scatter-plot/blob/master/LICENSE"
     }
   ],
   "main": "lib/index.js",
   "scripts": {
 		"test": "echo 'Error: no test specified' && exit 1",
-		"build": "mkdirp build && browserify -r ./:biojs-vis-rohart-msc-test -o build/test.js",
+		"build": "mkdirp build && browserify -r ./:biojs-vis-scatter-plot -o build/test.js",
 		"build-browser": "npm run build",
 		"install": "npm run build",
-		"watch": "watchify -r ./:biojs-vis-rohart-msc-test -v -o build/test.js",
+		"watch": "watchify -r ./:biojs-vis-scatter-plot -v -o build/test.js",
 		"w": "prunner \"npm run sniper\" \"npm run watch\"",
 		"sniper": "sniper ."
   },
@@ -45,9 +45,9 @@
         "https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.3/d3-tip.min.js",
         "https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"
     ],
-    "css":["/css/biojs-vis-rohart-msc-test.css"],
+    "css":["/css/biojs-vis-scatter-plot.css"],
     "snippets": ["examples"],
     "first": "simple"
    }, 
-  "keywords": ["d3","graph","stemformatics","biojs","Rohart","MSC","Rohart score"]
+  "keywords": ["d3","graph","stemformatics","biojs","Scatter","Plot"]
 }
