@@ -45,8 +45,41 @@ var tooltip = d3.tip()
         return temp; 
     });
 
+
+var tooltip1 = d3.tip()
+    .attr('class', 'd3-tip')
+    .offset([0, +110])
+    .html(function(d) {
+         sample_type = d.sample_type;
+
+             svg.selectAll("."+sample_type) // class of .dot
+            .on('mouseover', tooltip2.show)
+            .on('mouseout', tooltip2.hide);
+
+ 
+
+         console.log(d);
+
+       return temp; 
+    });
+
+
+
+var tooltip2 = d3.tip()
+    .attr('class', 'd3-tip')
+    .offset([0, +110])
+    .html(function(d) {
+         console.log(d);
+
+       return temp; 
+    });
+
+
+
+
+
 data_url= '../data/ds_id_5003_scatter_gata3.tsv';
-//data_url = '../data/ds_id_2000_scatter_stat1.tsv';
+data_url = '../data/ds_id_2000_scatter_stat1.tsv';
 //data_url = '../data/ds_id_2000_scatter_pdgfd.tsv';
 d3.tsv(data_url,function (error,data){
     max = 0; 
@@ -105,13 +138,13 @@ d3.tsv(data_url,function (error,data){
 
     // can always use just a straight value, but it's nicer when you calculate
     // based off the number of samples that you have
-    width = data.length*3 + 500;
+    width = data.length*1;
     horizontal_grid_lines = width;
     if (width < 1000){
         width = 1000;
     }
-
     var options = {
+        initial_padding: 10,
         background_colour: "white",
         background_stroke_colour:  "black",
         background_stroke_width:  "1px",
@@ -149,7 +182,7 @@ d3.tsv(data_url,function (error,data){
         title_class: "title",
         tip: tip,//second tip to just display the sample type
         tooltip: tooltip, // using d3-tips
-        unique_id: "chip_id",
+        tooltip1: tooltip1, // using d3-tips unique_id: "chip_id",
         watermark:"http://www1.stemformatics.org/img/logo.gif",
         width: width, // suggest 50 per sample
         x_axis_text_angle:-45, 
