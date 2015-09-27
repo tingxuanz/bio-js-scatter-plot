@@ -80,7 +80,7 @@ var tooltip2 = d3.tip()
 
 data_url= '../data/ds_id_5003_scatter_gata3.tsv';
 //data_url = '../data/ds_id_2000_scatter_stat1.tsv';
-//data_url = '../data/ds_id_2000_scatter_pdgfd.tsv';
+data_url = '../data/ds_id_2000_scatter_pdgfd.tsv';
 d3.tsv(data_url,function (error,data){
     max = 0; 
     min = 0;
@@ -168,6 +168,9 @@ d3.tsv(data_url,function (error,data){
         margin:{top: 180, left:200, bottom: 530, right: 300},
         //default number of colours is 39 (before it reitterates over it again)
         number_of_colours: 39,
+        //2 is the chosen padding. On either side there will be padding = to the interval between the points
+        //1 gives 1/2 the interval on either side etc.
+        padding: 2,
         probe_count: probe_count,
         probes: probes,
         //sample type order indicates whether or not the samplese need to be represented in a specific order
