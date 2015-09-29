@@ -149,6 +149,7 @@ d3.tsv(data_url,function (error,data){
         background_stroke_colour:  "black",
         background_stroke_width:  "1px",
         circle_radius:3.5,  // for the scatter points
+        hover_circle_radius: 10,
         colour: colours,
         data: data,
         domain_colours : ["#FFFFFF","#7f3f98"],
