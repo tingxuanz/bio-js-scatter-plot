@@ -32,6 +32,7 @@ div.tooltip {
     background: white;
     color: #FF3300;
 }
+.line-probe { stroke-width: 5px; }
 
 .bar {
   fill: white;

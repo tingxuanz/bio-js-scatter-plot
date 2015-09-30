@@ -18,7 +18,7 @@ var colours = ["DarkOrchid", "Orange", "DodgerBlue", "Blue","BlueViolet","Brown
 //of the collumn
 var tip = d3.tip()
     .attr('class', 'd3-tip')
-//    .offset([-20, 0])
+    .offset([-20, 0])
     .html(function(d) {
         sample_type = d.sample_type;
         temp =
@@ -79,8 +79,6 @@ var tooltip2 = d3.tip()
 
 
 data_url= '../data/ds_id_5003_scatter_gata3.tsv';
-//data_url = '../data/ds_id_2000_scatter_stat1.tsv';
-//data_url = '../data/ds_id_2000_scatter_pdgfd.tsv';
 d3.tsv(data_url,function (error,data){
     max = 0; 
     min = 0;
@@ -147,9 +145,8 @@ d3.tsv(data_url,function (error,data){
         initial_padding: 10,
         background_colour: "white",
         background_stroke_colour:  "black",
-        background_stroke_width:  "6px",
+        background_stroke_width:  "1px",
         circle_radius:3.5,  // for the scatter points
-        hover_circle_radius: 10,
         colour: colours,
         data: data,
         domain_colours : ["#FFFFFF","#7f3f98"],
@@ -169,9 +166,6 @@ d3.tsv(data_url,function (error,data){
         margin:{top: 180, left:200, bottom: 530, right: 300},
         //default number of colours is 39 (before it reitterates over it again)
         number_of_colours: 39,
-        //2 is the chosen padding. On either side there will be padding = to the interval between the points
-        //1 gives 1/2 the interval on either side etc.
-        padding: 2,
         probe_count: probe_count,
         probes: probes,
         //sample type order indicates whether or not the samplese need to be represented in a specific order
@@ -180,7 +174,7 @@ d3.tsv(data_url,function (error,data){
         show_horizontal_line_labels: true,
         subtitle1: subtitle1,
         subtitle2: subtitle2,
-        stroke_width:"3px",
+        stroke_width:"1.5px",
         target: target,
         title: title,
         title_class: "title",
