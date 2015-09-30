@@ -78,8 +78,8 @@ var tooltip2 = d3.tip()
 
 
 
-data_url= '../data/ds_id_5003_scatter_gata3.tsv';
-//data_url = '../data/ds_id_2000_scatter_stat1.tsv';
+//data_url= '../data/ds_id_5003_scatter_gata3.tsv';
+data_url = '../data/ds_id_2000_scatter_stat1.tsv';
 //data_url = '../data/ds_id_2000_scatter_pdgfd.tsv';
 d3.tsv(data_url,function (error,data){
     max = 0; 
