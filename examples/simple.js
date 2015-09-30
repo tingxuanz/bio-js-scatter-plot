@@ -180,7 +180,7 @@ d3.tsv(data_url,function (error,data){
         show_horizontal_line_labels: true,
         subtitle1: subtitle1,
         subtitle2: subtitle2,
-        stroke_width:"1.5px",
+        stroke_width:"3px",
         target: target,
         title: title,
         title_class: "title",
