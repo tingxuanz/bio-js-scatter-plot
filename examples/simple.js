@@ -18,7 +18,7 @@ var colours = ["DarkOrchid", "Orange", "DodgerBlue", "Blue","BlueViolet","Brown
 //of the collumn
 var tip = d3.tip()
     .attr('class', 'd3-tip')
-    .offset([-20, 0])
+//    .offset([-20, 0])
     .html(function(d) {
         sample_type = d.sample_type;
         temp =
@@ -80,7 +80,7 @@ var tooltip2 = d3.tip()
 
 data_url= '../data/ds_id_5003_scatter_gata3.tsv';
 //data_url = '../data/ds_id_2000_scatter_stat1.tsv';
-data_url = '../data/ds_id_2000_scatter_pdgfd.tsv';
+//data_url = '../data/ds_id_2000_scatter_pdgfd.tsv';
 d3.tsv(data_url,function (error,data){
     max = 0; 
     min = 0;
