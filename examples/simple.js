@@ -5,7 +5,7 @@ function round_to_two_decimal_places(num){
     return new_num;
 }
 
-
+//An array of colours which are used for the different probes
 var colours = ["DarkOrchid", "Orange", "DodgerBlue", "Blue","BlueViolet","Brown", "Deeppink", "BurlyWood","CadetBlue",
 "Chartreuse","Chocolate","Coral","CornflowerBlue","Crimson","Cyan", "Red", "DarkBlue",
 "DarkGoldenRod","DarkGray", "Tomato", "Violet","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen",
@@ -18,12 +18,10 @@ var colours = ["DarkOrchid", "Orange", "DodgerBlue", "Blue","BlueViolet","Brown
 //of the collumn
 var tip = d3.tip()
     .attr('class', 'd3-tip')
-//    .offset([-20, 0])
     .html(function(d) {
         sample_type = d.sample_type;
         temp =
             "Sample Type: " +  sample_type + "<br/>"
-           // "MSC predicted "+msc_call+"/"+total+" iterations<br/>"
         return temp;
     });
 
@@ -45,42 +43,14 @@ var tooltip = d3.tip()
         return temp; 
     });
 
-
-var tooltip1 = d3.tip()
-    .attr('class', 'd3-tip')
-    .offset([0, +110])
-    .html(function(d) {
-         sample_type = d.sample_type;
-
-             svg.selectAll("."+sample_type) // class of .dot
-            .on('mouseover', tooltip2.show)
-            .on('mouseout', tooltip2.hide);
-
- 
-
-         console.log(d);
-
-       return temp; 
-    });
-
-
-
-var tooltip2 = d3.tip()
-    .attr('class', 'd3-tip')
-    .offset([0, +110])
-    .html(function(d) {
-         console.log(d);
-
-       return temp; 
-    });
-
-
-
-
-
+//The url's to the data displayed
 data_url= '../data/ds_id_5003_scatter_gata3.tsv';
 //data_url = '../data/ds_id_2000_scatter_stat1.tsv';
 //data_url = '../data/ds_id_2000_scatter_pdgfd.tsv';
+
+/* Extracting the data from the csv files for use in the graph
+ * Also sets relevent options based on the data passed in (for example
+ * calculating the min and max values of the graph */
 d3.tsv(data_url,function (error,data){
     max = 0; 
     min = 0;
@@ -115,6 +85,8 @@ d3.tsv(data_url,function (error,data){
         count++;
 
     });
+    //USed to set up the probes and their corrosponding 
+    //colours
     for(i = 0; i < probe_count; i++){
         probes[i] = [];
         probes[i][0] = probes_types[i];
@@ -143,6 +115,8 @@ d3.tsv(data_url,function (error,data){
     if (width < 1000){
         width = 1000;
     }
+
+    //The main options for the graph
     var options = {
         initial_padding: 10,
         background_colour: "white",
@@ -186,7 +160,7 @@ d3.tsv(data_url,function (error,data){
         title_class: "title",
         tip: tip,//second tip to just display the sample type
         tooltip: tooltip, // using d3-tips
-        tooltip1: tooltip1, // using d3-tips unique_id: "chip_id",
+        //tooltip1: tooltip1, // using d3-tips unique_id: "chip_id",
         watermark:"http://www1.stemformatics.org/img/logo.gif",
         width: width, // suggest 50 per sample
         x_axis_text_angle:-45, 
