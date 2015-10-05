@@ -5,7 +5,7 @@ function round_to_two_decimal_places(num){
     return new_num;
 }
 
-
+//An array of colours which are used for the different probes
 var colours = ["DarkOrchid", "Orange", "DodgerBlue", "Blue","BlueViolet","Brown", "Deeppink", "BurlyWood","CadetBlue",
 "Chartreuse","Chocolate","Coral","CornflowerBlue","Crimson","Cyan", "Red", "DarkBlue",
 "DarkGoldenRod","DarkGray", "Tomato", "Violet","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen",
@@ -18,12 +18,10 @@ var colours = ["DarkOrchid", "Orange", "DodgerBlue", "Blue","BlueViolet","Brown
 //of the collumn
 var tip = d3.tip()
     .attr('class', 'd3-tip')
-    .offset([-20, 0])
     .html(function(d) {
         sample_type = d.sample_type;
         temp =
             "Sample Type: " +  sample_type + "<br/>"
-           // "MSC predicted "+msc_call+"/"+total+" iterations<br/>"
         return temp;
     });
 
@@ -45,40 +43,14 @@ var tooltip = d3.tip()
         return temp; 
     });
 
+//The url's to the data displayed
+//data_url= '../data/ds_id_5003_scatter_gata3.tsv';
+data_url = '../data/ds_id_2000_scatter_stat1.tsv';
+//data_url = '../data/ds_id_2000_scatter_pdgfd.tsv';
 
-var tooltip1 = d3.tip()
-    .attr('class', 'd3-tip')
-    .offset([0, +110])
-    .html(function(d) {
-         sample_type = d.sample_type;
-
-             svg.selectAll("."+sample_type) // class of .dot
-            .on('mouseover', tooltip2.show)
-            .on('mouseout', tooltip2.hide);
-
- 
-
-         console.log(d);
-
-       return temp; 
-    });
-
-
-
-var tooltip2 = d3.tip()
-    .attr('class', 'd3-tip')
-    .offset([0, +110])
-    .html(function(d) {
-         console.log(d);
-
-       return temp; 
-    });
-
-
-
-
-
-data_url= '../data/ds_id_5003_scatter_gata3.tsv';
+/* Extracting the data from the csv files for use in the graph
+ * Also sets relevent options based on the data passed in (for example
+ * calculating the min and max values of the graph */
 d3.tsv(data_url,function (error,data){
     max = 0; 
     min = 0;
@@ -88,6 +60,13 @@ d3.tsv(data_url,function (error,data){
     probes_types = new Array();
     probes = new Array();
     probe_count = 0;
+    //Saving the sample types and corrosponding id to use when 
+    //itterating over for the hovering over the ample types and altering the scatter
+    //points for that sample type
+    sample_types = new Array();
+    sample_type_array = new Array();
+    sample_type_count = 0;
+    j = 0;
     //need to put in the number of colours that are being used (so that it
     //can reiitterate over them again if necesary
     number_of_colours = 39;
@@ -110,9 +89,19 @@ d3.tsv(data_url,function (error,data){
             probes_types.push(d.Probe);
             probe_count++;
         }
+        if($.inArray(d.Sample_Type, sample_type_array) == -1) {
+            //Gives each sample type a unique id so that they can be grouped 
+            //And highlighted together
+            sample_type_array.push(d.Sample_Type);
+            sample_types[d.Sample_Type] = sample_type_count;
+            j++;
+            sample_type_count ++;
+        }
         count++;
 
     });
+    //USed to set up the probes and their corrosponding 
+    //colours
     for(i = 0; i < probe_count; i++){
         probes[i] = [];
         probes[i][0] = probes_types[i];
@@ -128,6 +117,7 @@ d3.tsv(data_url,function (error,data){
     //turn number of increments into a whole number
     number_of_increments |= 0;
     probes = probes;
+    sample_types = sample_types;
     probe_count = probe_count;
     title = "Scatter Plot";
     subtitle1 = "Subtitle"
@@ -141,18 +131,22 @@ d3.tsv(data_url,function (error,data){
     if (width < 1000){
         width = 1000;
     }
+
+    //The main options for the graph
     var options = {
         initial_padding: 10,
         background_colour: "white",
         background_stroke_colour:  "black",
-        background_stroke_width:  "1px",
-        circle_radius:3.5,  // for the scatter points
+        background_stroke_width:  "6px",
+        circle_radius: {small: 2, large: 3.5},  // for the scatter points
+        hover_circle_radius: 10,
         colour: colours,
         data: data,
         domain_colours : ["#FFFFFF","#7f3f98"],
         error_bar_width:5,
         error_dividor:100,//100 means error bars will not show when error < 1% value 
-        height: 1500,
+        graph_size: "large", //large indicates a normal size, small allows for 4 graphs to fit on one page
+        height: {small: 400, large: 1500},
         //horizontal lines takes a name, colour and the yvalue. If no colour is given one is chosen at random
         horizontal_lines: [["Detection Threshold", "green", 5], ["Median", , 8.93]],
         horizontal_line_value_column: 'value',
@@ -164,25 +158,32 @@ d3.tsv(data_url,function (error,data){
         line_stroke_width: "2px",
         margin_legend: width - 190,
         margin:{top: 180, left:200, bottom: 530, right: 300},
+        margin_small:{top: 40, left: 40, bottom: 40, right: 80},
         //default number of colours is 39 (before it reitterates over it again)
         number_of_colours: 39,
+        //2 is the chosen padding. On either side there will be padding = to the interval between the points
+        //1 gives 1/2 the interval on either side etc.
+        padding: 2,
         probe_count: probe_count,
         probes: probes,
         //sample type order indicates whether or not the samplese need to be represented in a specific order
         //if no order is given then the order from the data set is taken
         sample_type_order:"none",// "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
+        sample_types: sample_types,
         show_horizontal_line_labels: true,
         subtitle1: subtitle1,
         subtitle2: subtitle2,
-        stroke_width:"1.5px",
+        stroke_width:"3px",
         target: target,
+        text_size: {small: "12px", large: "20px"},
+        title_text_size: {small: "12px", large: "30px"},
         title: title,
         title_class: "title",
         tip: tip,//second tip to just display the sample type
         tooltip: tooltip, // using d3-tips
-        tooltip1: tooltip1, // using d3-tips unique_id: "chip_id",
+        //tooltip1: tooltip1, // using d3-tips unique_id: "chip_id",
         watermark:"http://www1.stemformatics.org/img/logo.gif",
-        width: width, // suggest 50 per sample
+        width: {small: 500, large: width}, // suggest 50 per sample
         x_axis_text_angle:-45, 
         x_axis_title: "Samples",
         x_column: 'Sample_ID',
