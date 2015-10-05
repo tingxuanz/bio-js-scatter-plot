@@ -138,14 +138,15 @@ d3.tsv(data_url,function (error,data){
         background_colour: "white",
         background_stroke_colour:  "black",
         background_stroke_width:  "6px",
-        circle_radius:3.5,  // for the scatter points
+        circle_radius: {small: 2, large: 3.5},  // for the scatter points
         hover_circle_radius: 10,
         colour: colours,
         data: data,
         domain_colours : ["#FFFFFF","#7f3f98"],
         error_bar_width:5,
         error_dividor:100,//100 means error bars will not show when error < 1% value 
-        height: 1500,
+        graph_size: "small",
+        height: {small: 400, large: 1500},
         //horizontal lines takes a name, colour and the yvalue. If no colour is given one is chosen at random
         horizontal_lines: [["Detection Threshold", "green", 5], ["Median", , 8.93]],
         horizontal_line_value_column: 'value',
@@ -157,6 +158,7 @@ d3.tsv(data_url,function (error,data){
         line_stroke_width: "2px",
         margin_legend: width - 190,
         margin:{top: 180, left:200, bottom: 530, right: 300},
+        margin_small:{top: 40, left: 40, bottom: 40, right: 80},
         //default number of colours is 39 (before it reitterates over it again)
         number_of_colours: 39,
         //2 is the chosen padding. On either side there will be padding = to the interval between the points
@@ -173,13 +175,15 @@ d3.tsv(data_url,function (error,data){
         subtitle2: subtitle2,
         stroke_width:"3px",
         target: target,
+        text_size: {small: "12px", large: "20px"},
+        title_text_size: {small: "12px", large: "30px"},
         title: title,
         title_class: "title",
         tip: tip,//second tip to just display the sample type
         tooltip: tooltip, // using d3-tips
         //tooltip1: tooltip1, // using d3-tips unique_id: "chip_id",
         watermark:"http://www1.stemformatics.org/img/logo.gif",
-        width: width, // suggest 50 per sample
+        width: {small: 500, large: width}, // suggest 50 per sample
         x_axis_text_angle:-45, 
         x_axis_title: "Samples",
         x_column: 'Sample_ID',
