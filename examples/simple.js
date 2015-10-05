@@ -60,6 +60,13 @@ d3.tsv(data_url,function (error,data){
     probes_types = new Array();
     probes = new Array();
     probe_count = 0;
+    //Saving the sample types and corrosponding id to use when 
+    //itterating over for the hovering over the ample types and altering the scatter
+    //points for that sample type
+    sample_types = new Array();
+    sample_type_array = new Array();
+    sample_type_count = 0;
+    j = 0;
     //need to put in the number of colours that are being used (so that it
     //can reiitterate over them again if necesary
     number_of_colours = 39;
@@ -82,6 +89,14 @@ d3.tsv(data_url,function (error,data){
             probes_types.push(d.Probe);
             probe_count++;
         }
+        if($.inArray(d.Sample_Type, sample_type_array) == -1) {
+            //Gives each sample type a unique id so that they can be grouped 
+            //And highlighted together
+            sample_type_array.push(d.Sample_Type);
+            sample_types[d.Sample_Type] = sample_type_count;
+            j++;
+            sample_type_count ++;
+        }
         count++;
 
     });
@@ -102,6 +117,7 @@ d3.tsv(data_url,function (error,data){
     //turn number of increments into a whole number
     number_of_increments |= 0;
     probes = probes;
+    sample_types = sample_types;
     probe_count = probe_count;
     title = "Scatter Plot";
     subtitle1 = "Subtitle"
@@ -151,6 +167,7 @@ d3.tsv(data_url,function (error,data){
         //sample type order indicates whether or not the samplese need to be represented in a specific order
         //if no order is given then the order from the data set is taken
         sample_type_order:"none",// "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
+        sample_types: sample_types,
         show_horizontal_line_labels: true,
         subtitle1: subtitle1,
         subtitle2: subtitle2,
