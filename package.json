@@ -47,7 +47,13 @@
     ],
     "css":["/css/biojs-vis-scatter-plot.css"],
     "snippets": ["examples"],
-    "first": "many_sample_types_large"
+    "first": "many_sample_types_large",
+    "second": "many_sample_types_small",
+    "third": "single_probe_large",
+    "fourth": "single_probe_small",
+    "fith": "three_probes_large",
+    "sixth": "three_probes_small"
+
    }, 
   "keywords": ["d3","graph","stemformatics","biojs","Scatter","Plot"]
 }
