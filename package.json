@@ -1,7 +1,7 @@
 {
   "name": "biojs-vis-scatter-plot",
   "description": "BioJS component to provide a scatter plot graph hosted in Stemformatics",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "homepage": "https://github.com/ArianeMora/bio-js-scatter-plot",
   "author": {
     "name": "ArianeMora",
