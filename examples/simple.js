@@ -112,9 +112,10 @@ d3.tsv(data_url,function (error,data){
         probes[i][1] = colours[colour_count];
         colour_count++;
     }
-    //for an increment per number = max - min
+    // The number of increments is how large the increment size is for the
+    // y axis (i.e. 1 per whole numner etc) e.g. or an increment per number = max - min
     number_of_increments = max - min;
-    //turn number of increments into a whole number
+    // Turn number of increments into a whole number
     number_of_increments |= 0;
     probes = probes;
     sample_types = sample_types;
@@ -145,7 +146,7 @@ d3.tsv(data_url,function (error,data){
         domain_colours : ["#FFFFFF","#7f3f98"],
         error_bar_width:5,
         error_dividor:100,//100 means error bars will not show when error < 1% value 
-        graph_size: "small",
+        graph_size: "large",
         height: {small: 400, large: 1500},
         //horizontal lines takes a name, colour and the yvalue. If no colour is given one is chosen at random
         horizontal_lines: [["Detection Threshold", "green", 5], ["Median", , 8.93]],
@@ -153,7 +154,9 @@ d3.tsv(data_url,function (error,data){
         //to have horizontal grid lines = width (to span accross the grid), otherwise = 0
         horizontal_grid_lines: width,
         legend_class: "legend",
-        increment: number_of_increments,
+        increment: number_of_increments * 1, // To double the number of increments ( mutliply by 2, same for 
+        // reducing. Number of increments is how many numbers are displayed on the y axis. For none to
+        // be displayed multiply by 0
         legend_range: [0,100],
         line_stroke_width: "2px",
         margin_legend: width - 190,
@@ -184,6 +187,7 @@ d3.tsv(data_url,function (error,data){
         //tooltip1: tooltip1, // using d3-tips unique_id: "chip_id",
         watermark:"http://www1.stemformatics.org/img/logo.gif",
         width: {small: 500, large: width}, // suggest 50 per sample
+        x_axis_labels: "yes", // yes indicates the user wants labels on the x axis (sample types)
         x_axis_text_angle:-45, 
         x_axis_title: "Samples",
         x_column: 'Sample_ID',
