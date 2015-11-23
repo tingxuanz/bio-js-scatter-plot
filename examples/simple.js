@@ -174,8 +174,8 @@ d3.tsv(data_url,function (error,data){
         sample_type_order:"none",// "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
         sample_types: sample_types,
         show_horizontal_line_labels: true,
-        subtitle1: subtitle1,
-        subtitle2: subtitle2,
+        // Can fit 4 subtitles currently
+        subtitles: [subtitle1, subtitle2, "heu", "ehdlakjla", "wekjhwkjefh", "wkjehkwjfhkwj", "wkjehkwjfhkwj", "wdkjhwkj"],
         stroke_width:"3px",
         target: target,
         text_size: {small: "12px", large: "20px"},
