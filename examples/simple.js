@@ -143,6 +143,9 @@ d3.tsv(data_url,function (error,data){
         hover_circle_radius: 10,
         colour: colours,
         data: data,
+        // eq. yes for x_axis labels indicates the user wants labels on the x axis (sample types)
+        // indicate yes or no to each of the display options below to choose which are displayed on the graph
+        display: {hoverbars: "no", error_bars: "yes", legend: "no", horizontal_lines: "no", vertical_lines: "no", x_axis_labels: "no", y_axis_title: "no", horizontal_grid_lines: "no"},
         domain_colours : ["#FFFFFF","#7f3f98"],
         error_bar_width:5,
         error_dividor:100,//100 means error bars will not show when error < 1% value 
@@ -173,7 +176,6 @@ d3.tsv(data_url,function (error,data){
         //if no order is given then the order from the data set is taken
         sample_type_order:"none",// "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
         sample_types: sample_types,
-        show_horizontal_line_labels: true,
         // Can fit 4 subtitles currently
         subtitles: [subtitle1, subtitle2, "heu", "ehdlakjla", "wekjhwkjefh", "wkjehkwjfhkwj", "wkjehkwjfhkwj", "wdkjhwkj"],
         stroke_width:"3px",
@@ -187,7 +189,6 @@ d3.tsv(data_url,function (error,data){
         //tooltip1: tooltip1, // using d3-tips unique_id: "chip_id",
         watermark:"http://www1.stemformatics.org/img/logo.gif",
         width: {small: 500, large: width}, // suggest 50 per sample
-        x_axis_labels: "yes", // yes indicates the user wants labels on the x axis (sample types)
         x_axis_text_angle:-45, 
         x_axis_title: "Samples",
         x_column: 'Sample_ID',
