@@ -139,6 +139,7 @@ d3.tsv(data_url,function (error,data){
         background_stroke_colour:  "black",
         background_stroke_width:  "6px",
         circle_radius: {small: 2, large: 3.5},  // for the scatter points
+        display: {hoverbars: "yes", error_bars: "yes", legend: "yes", horizontal_lines: "yes", vertical_lines: "yes", x_axis_labels: "yes", y_axis_title: "yes", horizontal_grid_lines: "yes"},
         hover_circle_radius: 10,
         colour: colours,
         data: data,
@@ -157,7 +158,7 @@ d3.tsv(data_url,function (error,data){
         legend_range: [0,100],
         line_stroke_width: "2px",
         margin_legend: width - 190,
-        margin:{top: 180, left:200, bottom: 530, right: 300},
+        margin:{top: 180, left: 200, bottom: 530, right: 300},
         margin_small:{top: 40, left: 40, bottom: 40, right: 80},
         //default number of colours is 39 (before it reitterates over it again)
         number_of_colours: 39,
@@ -173,6 +174,7 @@ d3.tsv(data_url,function (error,data){
         show_horizontal_line_labels: true,
         subtitle1: subtitle1,
         subtitle2: subtitle2,
+        subtitles: [subtitle1, subtitle2],
         stroke_width:"3px",
         target: target,
         text_size: {small: "12px", large: "20px"},
@@ -183,7 +185,7 @@ d3.tsv(data_url,function (error,data){
         tooltip: tooltip, // using d3-tips
         //tooltip1: tooltip1, // using d3-tips unique_id: "chip_id",
         watermark:"http://www1.stemformatics.org/img/logo.gif",
-        width: {small: 500, large: width}, // suggest 50 per sample
+        width: {small: 500, large: 500}, // suggest 50 per sample
         x_axis_text_angle:-45, 
         x_axis_title: "Samples",
         x_column: 'Sample_ID',
