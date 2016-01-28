@@ -112,9 +112,10 @@ d3.tsv(data_url,function (error,data){
         probes[i][1] = colours[colour_count];
         colour_count++;
     }
-    //for an increment per number = max - min
+    // The number of increments is how large the increment size is for the
+    // y axis (i.e. 1 per whole numner etc) e.g. or an increment per number = max - min
     number_of_increments = max - min;
-    //turn number of increments into a whole number
+    // Turn number of increments into a whole number
     number_of_increments |= 0;
     probes = probes;
     sample_types = sample_types;
@@ -134,32 +135,44 @@ d3.tsv(data_url,function (error,data){
 
     //The main options for the graph
     var options = {
+
+        /******** Options for Sizing *****************************************/
+        height: 200,
+        width: 300,
+        margin:{top: 30, left: 60, bottom: 500, right: 100},
         initial_padding: 10,
+        x_axis_label_padding: 10,//padding for the x axis labels (how far below the graph)
+        text_size: "12px",
+        title_text_size: "12px",
+        increment: number_of_increments * 0.5, // To double the number of increments ( mutliply by 2, same for 
+        // reducing. Number of increments is how many numbers are displayed on the y axis. For none to
+        // be displayed multiply by 0 
+        ////////////// x axis labels has a bug to be fixed //////////////////
+        display: {hoverbars: "yes", error_bars: "yes", legend: "no", horizontal_lines: "no", vertical_lines: "no", x_axis_labels: "yes", y_axis_title: "yes", horizontal_grid_lines: "yes"},
+
+        circle_radius: 2,  // for the scatter points
+        hover_circle_radius: 10,
+        /*********** End of sizing options **********************************/
+
         background_colour: "white",
         background_stroke_colour:  "black",
         background_stroke_width:  "6px",
-        circle_radius: {small: 2, large: 3.5},  // for the scatter points
-        hover_circle_radius: 10,
         colour: colours,
         data: data,
+        // eq. yes for x_axis labels indicates the user wants labels on the x axis (sample types)
+        // indicate yes or no to each of the display options below to choose which are displayed on the graph
         domain_colours : ["#FFFFFF","#7f3f98"],
         error_bar_width:5,
         error_dividor:100,//100 means error bars will not show when error < 1% value 
-        graph_size: "small", //can be small or large, small accomadates for 4 graphs to a page
-        height: {small: 400, large: 1500},
         //horizontal lines takes a name, colour and the yvalue. If no colour is given one is chosen at random
         horizontal_lines: [["Detection Threshold", "green", 5], ["Median", , 8.93]],
         horizontal_line_value_column: 'value',
         //to have horizontal grid lines = width (to span accross the grid), otherwise = 0
         horizontal_grid_lines: width,
         legend_class: "legend",
-        increment: number_of_increments,
         legend_range: [0,100],
         line_stroke_width: "2px",
-        margin_legend: width - 190,
-        margin:{top: 180, left:200, bottom: 530, right: 300},
-        margin_small:{top: 40, left: 40, bottom: 40, right: 80},
-        //default number of colours is 39 (before it reitterates over it again)
+       //default number of colours iis 39 (before it reitterates over it again)
         number_of_colours: 39,
         //2 is the chosen padding. On either side there will be padding = to the interval between the points
         //1 gives 1/2 the interval on either side etc.
@@ -170,20 +183,18 @@ d3.tsv(data_url,function (error,data){
         //if no order is given then the order from the data set is taken
         sample_type_order:"none",// "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
         sample_types: sample_types,
-        show_horizontal_line_labels: true,
-        subtitle1: subtitle1,
-        subtitle2: subtitle2,
+        // Can fit 4 subtitles currently
+        subtitles: [subtitle1],
         stroke_width:"3px",
         target: target,
-        text_size: {small: "12px", large: "20px"},
-        title_text_size: {small: "12px", large: "30px"},
+        text_size: "8px",
+        title_text_size: "8px",
         title: title,
         title_class: "title",
         tip: tip,//second tip to just display the sample type
         tooltip: tooltip, // using d3-tips
         //tooltip1: tooltip1, // using d3-tips unique_id: "chip_id",
         watermark:"http://www1.stemformatics.org/img/logo.gif",
-        width: {small: 500, large: width}, // suggest 50 per sample
         x_axis_text_angle:-45, 
         x_axis_title: "Samples",
         x_column: 'Sample_ID',
