@@ -142,8 +142,6 @@ d3.tsv(data_url,function (error,data){
         margin:{top: 30, left: 60, bottom: 500, right: 100},
         initial_padding: 10,
         x_axis_label_padding: 10,//padding for the x axis labels (how far below the graph)
-        text_size: "12px",
-        title_text_size: "12px",
         increment: 5, // To double the number of increments ( mutliply by 2, same for 
         // reducing. Number of increments is how many numbers are displayed on the y axis. For none to
         // be displayed multiply by 0
@@ -186,8 +184,8 @@ d3.tsv(data_url,function (error,data){
         subtitles: [subtitle1],
         stroke_width:"1px", // width of the error bars
         target: target,
-        text_size: "8px",
-        title_text_size: "8px",
+        text_size: "12px",
+        title_text_size: "12px",
         title: title,
         title_class: "title",
         tip: tip,//second tip to just display the sample type
