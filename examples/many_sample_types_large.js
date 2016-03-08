@@ -155,8 +155,13 @@ d3.tsv(data_url,function (error,data){
 
         background_colour: "white",
         background_stroke_colour:  "black",
-        background_stroke_width:  "6px",
+        background_stroke_width:  "1px",
         colour: colours,
+	font_style: "Arial",
+	grid_colour: "black",
+	grid_opacity: 0.5,
+	y_label_text_size: "14px",
+	y_label_x_val: 40,
         data: data,
         // eq. yes for x_axis labels indicates the user wants labels on the x axis (sample types)
         // indicate yes or no to each of the display options below to choose which are displayed on the graph
