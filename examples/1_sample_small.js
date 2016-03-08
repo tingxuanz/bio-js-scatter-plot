@@ -139,29 +139,35 @@ d3.tsv(data_url,function (error,data){
         /******** Options for Sizing *****************************************/
         height: 200,
         width: 300,
-        margin:{top: 30, left: 60, bottom: 500, right: 100},
+        margin:{top: 50, left: 60, bottom: 500, right: 100},
         initial_padding: 10,
         x_axis_label_padding: 10,//padding for the x axis labels (how far below the graph)
-        text_size: "12px",
+        text_size: "10px",
         title_text_size: "12px",
-        increment: 5, // To double the number of increments ( mutliply by 2, same for 
+        increment: number_of_increments * 0.5, // To double the number of increments ( mutliply by 2, same for 
         // reducing. Number of increments is how many numbers are displayed on the y axis. For none to
         // be displayed multiply by 0
-        display: {hoverbars: "yes", error_bars: "yes", legend: "yes", horizontal_lines: "yes", vertical_lines: "yes", x_axis_labels: "yes", y_axis_title: "yes", horizontal_grid_lines: "yes"},
+        display: {hoverbars: "yes", error_bars: "yes", legend: "no", horizontal_lines: "yes", vertical_lines: "yes", x_axis_labels: "yes", y_axis_title: "yes", horizontal_grid_lines: "no"},
 
         circle_radius: 2,  // for the scatter points
-        hover_circle_radius: 10,
+        hover_circle_radius: 5,
         /*********** End of sizing options **********************************/
 
         background_colour: "white",
         background_stroke_colour:  "black",
-        background_stroke_width:  "6px",
+        background_stroke_width:  "1px",
         colour: colours,
+	font_style: "Arial",
+	grid_colour: "black",
+	grid_opacity: 0.5,
+	y_label_text_size: "14px",
+	y_label_x_val: 40,
         data: data,
         // eq. yes for x_axis labels indicates the user wants labels on the x axis (sample types)
         // indicate yes or no to each of the display options below to choose which are displayed on the graph
         domain_colours : ["#FFFFFF","#7f3f98"],
-        error_bar_width:5,
+        error_bar_width:3,
+	error_stroke_width: "1px",
         error_dividor:100,//100 means error bars will not show when error < 1% value 
         //horizontal lines takes a name, colour and the yvalue. If no colour is given one is chosen at random
         horizontal_lines: [["Detection Threshold", "green", 5], ["Median", , 8.93]],
@@ -184,10 +190,8 @@ d3.tsv(data_url,function (error,data){
         sample_types: sample_types,
         // Can fit 4 subtitles currently
         subtitles: [subtitle1],
-        stroke_width:"1px", // width of the error bars
+        stroke_width:"3px",
         target: target,
-        text_size: "8px",
-        title_text_size: "8px",
         title: title,
         title_class: "title",
         tip: tip,//second tip to just display the sample type
