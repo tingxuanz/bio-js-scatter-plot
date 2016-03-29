@@ -137,7 +137,9 @@ d3.tsv(data_url,function (error,data){
     var options = {
 
         /******** Options for Sizing *****************************************/
-        height: 200,
+        legend_padding: 50,
+	legend_rect_size: 20,
+	height: 200,
         width: 300,
         margin:{top: 50, left: 60, bottom: 500, right: 100},
         initial_padding: 10,
