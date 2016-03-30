@@ -4,7 +4,7 @@
 
 > BioJS component to provide a scatter-plot graphing tool hosted in Stemformatics
 
-## Getting Started if you already have npm
+## Getting Started 
 Install the module with: `npm install biojs-vis-scatter-plot`
 
 
