@@ -137,7 +137,9 @@ d3.tsv(data_url,function (error,data){
     var options = {
 
         /******** Options for Sizing *****************************************/
-        legend_padding: 50,
+	box_width: 30,
+	box_width_wiskers: 15,        
+	legend_padding: 50,
         legend_rect_size: 20,
 	height: 400,
         width: 600,
