@@ -4,8 +4,10 @@
 
 > BioJS component to provide a scatter-plot graphing tool hosted in Stemformatics
 
-## Getting Started
+## Getting Started 
 Install the module with: `npm install biojs-vis-scatter-plot`
+
+
 
 for more details of the options, see the working example [here](http://biojs.io/d/biojs-vis-scatter-plot)  and the example code [here](https://github.com/ArianeMora/bio-js-scatter-plot/blob/master/examples/simple.js)
 
@@ -75,15 +77,38 @@ var instance = new app(options);
 #### Running the instance for developing
 
 Note: If you are running Ubuntu LTS 12.04 or 14.04 you will be behind in npm. To fix this, do the following:
+Installing npm and node
 ```
-sudo apt-get purge nodejs npm
+sudo apt-get install npm
+sudo apt-get update
+```
 
-curl -sL https://deb.nodesource.com/setup | sudo bash -
+May need to update the versions of npm and node
+```
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
+nvm install 5.0
+```
+Check you have an updated version of npm and node:
+```
+npm -v
+```
+(should be 3.3.6)
 
-sudo apt-get install -y nodejs
-
-sudo npm install -g watchify biojs-sniper
-
+Install npm packages
+```
+npm install -g mkdirp
+npm install -g browserify
+npm install -g prunner
+npm install -g sniper
+```
+Clone the repo of choice
+```
+git clone https://github.com/ArianeMora/bio-js-scatter-plot.git
+```
+Run
+```
+npm run build
+npm run w
 ```
 
 Once you have downloaded the code, you will need to ensure that you create a build directory in the root directory.
