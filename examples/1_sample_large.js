@@ -151,7 +151,7 @@ d3.tsv(data_url,function (error,data){
         increment: number_of_increments * 0.5, // To double the number of increments ( mutliply by 2, same for 
         // reducing. Number of increments is how many numbers are displayed on the y axis. For none to
         // be displayed multiply by 0
-        display: {hoverbars: "yes", error_bars: "yes", legend: "yes", horizontal_lines: "yes", vertical_lines: "yes", x_axis_labels: "yes", y_axis_title: "yes", horizontal_grid_lines: "yes"},
+        display: {hoverbars: "yes", error_bars: "yes", legend: "yes", horizontal_lines: "yes", legend_hover: "no", vertical_lines: "yes", x_axis_labels: "yes", y_axis_title: "yes", horizontal_grid_lines: "yes"},
 
         circle_radius: 4,  // for the scatter points
         hover_circle_radius: 8,
@@ -190,7 +190,7 @@ d3.tsv(data_url,function (error,data){
         probes: probes,
         //sample type order indicates whether or not the samplese need to be represented in a specific order
         //if no order is given then the order from the data set is taken
-        sample_type_order:"none",// "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
+        sample_type_order:"DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
         sample_types: sample_types,
         // Can fit 4 subtitles currently
         subtitles: [subtitle1],

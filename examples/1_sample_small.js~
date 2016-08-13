@@ -137,7 +137,9 @@ d3.tsv(data_url,function (error,data){
     var options = {
 
         /******** Options for Sizing *****************************************/
-        height: 200,
+        legend_padding: 50,
+        legend_rect_size: 20,
+	height: 200,
         width: 300,
         margin:{top: 50, left: 60, bottom: 500, right: 100},
         initial_padding: 10,
@@ -167,6 +169,7 @@ d3.tsv(data_url,function (error,data){
         // indicate yes or no to each of the display options below to choose which are displayed on the graph
         domain_colours : ["#FFFFFF","#7f3f98"],
         error_bar_width:3,
+	error_stroke_width: "1px",
         error_dividor:100,//100 means error bars will not show when error < 1% value 
         //horizontal lines takes a name, colour and the yvalue. If no colour is given one is chosen at random
         horizontal_lines: [["Detection Threshold", "green", 5], ["Median", , 8.93]],

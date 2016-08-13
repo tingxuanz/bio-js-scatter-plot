@@ -149,7 +149,7 @@ d3.tsv(data_url,function (error,data){
         increment: number_of_increments * 0.5, // To double the number of increments ( mutliply by 2, same for 
         // reducing. Number of increments is how many numbers are displayed on the y axis. For none to
         // be displayed multiply by 0
-        display: {hoverbars: "yes", error_bars: "yes", legend: "no", horizontal_lines: "yes", vertical_lines: "yes", x_axis_labels: "yes", y_axis_title: "yes", horizontal_grid_lines: "no"},
+        display: {hoverbars: "yes", error_bars: "yes", legend: "no", horizontal_lines: "yes", legend_hover: "no", vertical_lines: "yes", x_axis_labels: "yes", y_axis_title: "yes", horizontal_grid_lines: "no"},
 
         circle_radius: 2,  // for the scatter points
         hover_circle_radius: 5,

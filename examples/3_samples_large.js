@@ -150,7 +150,7 @@ d3.tsv(data_url,function (error,data){
         // reducing. Number of increments is how many numbers are displayed on the y axis. For none to
         // be displayed multiply by 0
         // changes masde by isha to show horizontal and vertical lines
-        display: {hoverbars: "yes", error_bars: "yes", legend: "yes", horizontal_lines: "yes", vertical_lines: "yes", x_axis_labels: "yes", y_axis_title: "yes", horizontal_grid_lines: "yes"},
+        display: {hoverbars: "yes", error_bars: "yes", legend: "yes", horizontal_lines: "yes", legend_hover: "no", vertical_lines: "yes", x_axis_labels: "yes", y_axis_title: "yes", horizontal_grid_lines: "yes"},
 
         circle_radius: 2,  // for the scatter points
         hover_circle_radius: 10,

@@ -137,8 +137,8 @@ d3.tsv(data_url,function (error,data){
     var options = {
 
         /******** Options for Sizing *****************************************/
-	box_width: 10,
-	box_width_wiskers: 5,        
+	box_width: 30,
+	box_width_wiskers: 15,        
 	legend_padding: 50,
         legend_rect_size: 20,
 	height: 400,
@@ -190,7 +190,7 @@ d3.tsv(data_url,function (error,data){
         probes: probes,
         //sample type order indicates whether or not the samplese need to be represented in a specific order
         //if no order is given then the order from the data set is taken
-        sample_type_order:"none",// "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
+        sample_type_order:"DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
         sample_types: sample_types,
         // Can fit 4 subtitles currently
         subtitles: [subtitle1],
