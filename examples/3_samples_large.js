@@ -14,7 +14,7 @@ var colours = ["DarkOrchid", "Orange", "DodgerBlue", "Blue","BlueViolet","Brown
 "Gold","GoldenRod","Green","GreenYellow","HotPink","IndianRed","Indigo"];
 
 
-// tip which is displayed when hovering over a collumn. Displays the sample type 
+// tip which is displayed when hovering over a collumn. Displays the sample type
 //of the collumn
 var tip = d3.tip()
     .attr('class', 'd3-tip')
@@ -35,12 +35,12 @@ var tooltip = d3.tip()
         Expression_Value = round_to_two_decimal_places(d[y_column]);
         lwr = round_to_two_decimal_places(d.Expression_Value - d.Standard_Deviation);
         upr = round_to_two_decimal_places(d.Expression_Value + d.Standard_Deviation);
-        temp = 
+        temp =
             "Probe: " + d.Probe + "<br/>" +
             "Sample: " + d.Sample_ID +"<br/>"+
             "Log2 Expression: " + Expression_Value + " [" + lwr + ";" + upr +"]<br/>"
            // "MSC predicted "+msc_call+"/"+total+" iterations<br/>"
-        return temp; 
+        return temp;
     });
 
 //The url's to the data displayed
@@ -52,15 +52,15 @@ data_url = '../data/ds_id_2000_scatter_stat1.tsv';
  * Also sets relevent options based on the data passed in (for example
  * calculating the min and max values of the graph */
 d3.tsv(data_url,function (error,data){
-    max = 0; 
+    max = 0;
     min = 0;
     number_of_increments = 0;
-    count = 0; 
+    count = 0;
     //make an array to store the number of probes for the legend
     probes_types = new Array();
     probes = new Array();
     probe_count = 0;
-    //Saving the sample types and corrosponding id to use when 
+    //Saving the sample types and corrosponding id to use when
     //itterating over for the hovering over the ample types and altering the scatter
     //points for that sample type
     sample_types = new Array();
@@ -90,7 +90,7 @@ d3.tsv(data_url,function (error,data){
             probe_count++;
         }
         if($.inArray(d.Sample_Type, sample_type_array) == -1) {
-            //Gives each sample type a unique id so that they can be grouped 
+            //Gives each sample type a unique id so that they can be grouped
             //And highlighted together
             sample_type_array.push(d.Sample_Type);
             sample_types[d.Sample_Type] = sample_type_count;
@@ -100,7 +100,7 @@ d3.tsv(data_url,function (error,data){
         count++;
 
     });
-    //USed to set up the probes and their corrosponding 
+    //USed to set up the probes and their corrosponding
     //colours
     for(i = 0; i < probe_count; i++){
         probes[i] = [];
@@ -138,18 +138,19 @@ d3.tsv(data_url,function (error,data){
 
         /******** Options for Sizing *****************************************/
         legend_padding: 50,
-        legend_rect_size: 20,	
-	height: 400,
+        legend_rect_size: 20,
+	      height: 400,
         width: 600,
         margin:{top: 50, left: 60, bottom: 500, right: 150},
         initial_padding: 10,
         x_axis_label_padding: 10,//padding for the x axis labels (how far below the graph)
         text_size: "12px",
         title_text_size: "16px",
-        increment: number_of_increments * 0.5, // To double the number of increments ( mutliply by 2, same for 
+        increment: number_of_increments * 0.5, // To double the number of increments ( mutliply by 2, same for
         // reducing. Number of increments is how many numbers are displayed on the y axis. For none to
         // be displayed multiply by 0
-        display: {hoverbars: "yes", error_bars: "yes", legend: "yes", horizontal_lines: "no", vertical_lines: "no", x_axis_labels: "yes", y_axis_title: "yes", horizontal_grid_lines: "yes"},
+        // changes masde by isha to show horizontal and vertical lines
+        display: {hoverbars: "yes", error_bars: "yes", legend: "yes", horizontal_lines: "yes", vertical_lines: "yes", x_axis_labels: "yes", y_axis_title: "yes", horizontal_grid_lines: "yes"},
 
         circle_radius: 2,  // for the scatter points
         hover_circle_radius: 10,
@@ -170,7 +171,7 @@ d3.tsv(data_url,function (error,data){
         domain_colours : ["#FFFFFF","#7f3f98"],
         error_bar_width:5,
 	error_stroke_width: "1px",
-        error_dividor:100,//100 means error bars will not show when error < 1% value 
+        error_dividor:100,//100 means error bars will not show when error < 1% value
         //horizontal lines takes a name, colour and the yvalue. If no colour is given one is chosen at random
         horizontal_lines: [["Detection Threshold", "green", 5], ["Median", , 8.93]],
         horizontal_line_value_column: 'value',
@@ -200,7 +201,7 @@ d3.tsv(data_url,function (error,data){
         tooltip: tooltip, // using d3-tips
         //tooltip1: tooltip1, // using d3-tips unique_id: "chip_id",
         watermark:"http://www1.stemformatics.org/img/logo.gif",
-        x_axis_text_angle:-45, 
+        x_axis_text_angle:-45,
         x_axis_title: "Samples",
         x_column: 'Sample_ID',
         x_middle_title: 500,
@@ -216,5 +217,4 @@ d3.tsv(data_url,function (error,data){
     // Extract the data as SVG text string
     var svg_xml = (new XMLSerializer).serializeToString(svg);
 
-}); 
-
+});
