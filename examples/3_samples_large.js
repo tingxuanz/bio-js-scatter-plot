@@ -146,7 +146,7 @@ d3.tsv(data_url,function (error,data){
         x_axis_label_padding: 10,//padding for the x axis labels (how far below the graph)
         text_size: "12px",
         title_text_size: "16px",
-        increment: number_of_increments * 0.5, // To double the number of increments ( mutliply by 2, same for
+        increment: 1,//number_of_increments * 0.5, // To double the number of increments ( mutliply by 2, same for
         // reducing. Number of increments is how many numbers are displayed on the y axis. For none to
         // be displayed multiply by 0
         // changes masde by isha to show horizontal and vertical lines
