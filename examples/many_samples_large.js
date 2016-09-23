@@ -114,7 +114,7 @@ d3.tsv(data_url,function (error,data){
     }
     // The number of increments is how large the increment size is for the
     // y axis (i.e. 1 per whole numner etc) e.g. or an increment per number = max - min
-    number_of_increments = max - min;
+    number_of_increments = (max - min) + 1;
     // Turn number of increments into a whole number
     number_of_increments |= 0;
     probes = probes;
@@ -146,9 +146,10 @@ d3.tsv(data_url,function (error,data){
         x_axis_label_padding: 10,//padding for the x axis labels (how far below the graph)
         text_size: "12px",
         title_text_size: "16px",
-        increment: number_of_increments * 0.5, // To double the number of increments ( mutliply by 2, same for 
+        increment: 1, // To double the number of increments ( mutliply by 2, same for 
         // reducing. Number of increments is how many numbers are displayed on the y axis. For none to
         // be displayed multiply by 0
+        // Note it defaults to having 10 ticks
         display: {hoverbars: "yes", error_bars: "yes", legend: "yes", horizontal_lines: "yes", legend_hover: "no", vertical_lines: "yes", x_axis_labels: "yes", y_axis_title: "yes", horizontal_grid_lines: "yes"},
 
         circle_radius: 2,  // for the scatter points
@@ -192,7 +193,7 @@ d3.tsv(data_url,function (error,data){
         sample_type_order:"none",// "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
         sample_types: sample_types,
         // Can fit 4 subtitles currently
-        subtitles: [subtitle1],
+        subtitles: ["subtitle1", "subtitle2"],
         stroke_width:"3px",
         target: target,
         title: title,
