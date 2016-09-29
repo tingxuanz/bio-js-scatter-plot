@@ -137,11 +137,11 @@ d3.tsv(data_url,function (error,data){
     var options = {
 
         /******** Options for Sizing *****************************************/
-	box_width: 30,
-	box_width_wiskers: 15,        
-	legend_padding: 50,
+	    box_width: 30,
+	    box_width_wiskers: 15,        
+	    legend_padding: 50,
         legend_rect_size: 20,
-	height: 400,
+	    height: 400,
         width: 600,
         margin:{top: 50, left: 60, bottom: 500, right: 100},
         initial_padding: 10,
@@ -161,17 +161,17 @@ d3.tsv(data_url,function (error,data){
         background_stroke_colour:  "black",
         background_stroke_width:  "1px",
         colour: colours,
-	font_style: "Arial",
-	grid_colour: "black",
-	grid_opacity: 0.5,
-	y_label_text_size: "14px",
-	y_label_x_val: 40,
+	    font_style: "Arial",
+	    grid_colour: "black",
+        grid_opacity: 0.5,
+        y_label_text_size: "14px",
+        y_label_x_val: 40,
         data: data,
         // eq. yes for x_axis labels indicates the user wants labels on the x axis (sample types)
         // indicate yes or no to each of the display options below to choose which are displayed on the graph
         domain_colours : ["#FFFFFF","#7f3f98"],
         error_bar_width:5,
-	error_stroke_width: "1px",
+	    error_stroke_width: "1px",
         error_dividor:100,//100 means error bars will not show when error < 1% value 
         //horizontal lines takes a name, colour and the yvalue. If no colour is given one is chosen at random
         horizontal_lines: [["Detection Threshold", "green", 5], ["Median", , 8.93]],
