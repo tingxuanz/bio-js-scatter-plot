@@ -44,9 +44,9 @@ var tooltip = d3.tip()
     });
 
 //The url's to the data displayed
-//data_url= '../data/ds_id_5003_scatter_gata3.tsv';
+data_url= '../data/ds_id_5003_scatter_gata3.tsv';
 //data_url = '../data/ds_id_2000_scatter_stat1.tsv';
-data_url = '../data/ds_id_2000_scatter_pdgfd.tsv';
+//data_url = '../data/ds_id_2000_scatter_pdgfd.tsv';
 
 /* Extracting the data from the csv files for use in the graph
  * Also sets relevent options based on the data passed in (for example
@@ -153,7 +153,7 @@ cells",*/
 
             /******** Options for Sizing *****************************************/
             legend_padding: 100,
-            legend_rect_size: 20,
+            legend_rect_size: 10,
     	      height: 400,
             width: 400,//graph_box_width, ISHA
             margin:{top: 50, left: 200, bottom: 300, right: 150},
