@@ -140,8 +140,8 @@ d3.tsv(data_url,function (error,data){
         legend_padding: 50,
 	legend_rect_size: 20,
 	height: 200,
-        width: 300,
-        margin:{top: 50, left: 60, bottom: 500, right: 100},
+        width: 500,
+        margin:{top: 50, left: 30, bottom: 200, right: 100},
         initial_padding: 10,
         x_axis_label_padding: 10,//padding for the x axis labels (how far below the graph)
         text_size: "10px",

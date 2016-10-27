@@ -152,11 +152,11 @@ midbrain neural progenitor cells,Olfactory lamina propria derived stem
 cells",*/
 
             /******** Options for Sizing *****************************************/
-            legend_padding: 100,
-            legend_rect_size: 20,
+            legend_padding: 0,
+            legend_rect_size: 10,
     	      height: 400,
-            width: 400,//graph_box_width, ISHA
-            margin:{top: 50, left: 200, bottom: 300, right: 150},
+            width: 600,//graph_box_width, ISHA
+            margin:{top: 50, left: 50, bottom: 300, right: 200},
             initial_padding: 10,
             x_axis_label_padding: 10,//padding for the x axis labels (how far below the graph)
             text_size: "12px",
