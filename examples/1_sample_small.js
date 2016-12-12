@@ -137,9 +137,31 @@ d3.tsv(data_url,function (error,data){
 
     // The number of increments is how large the increment size is for the
     // y axis (i.e. 1 per whole numner etc) e.g. or an increment per number = max - min
-    number_of_increments = max - min;
+    //number_of_increments = max - min;
     // Turn number of increments into a whole number
-    number_of_increments |= 0;
+    //number_of_increments |= 0;
+    number_of_increments = max - min;
+    var increment_value = 1;
+    // this is when max-min is 0
+    if (number_of_increments < dataset_data["medianDatasetExpression"])  {
+        if (number_of_increments < dataset_data["detectionThreshold"])  {
+            number_of_increments = Math.ceil(dataset_data["detectionThreshold"]);
+        }
+        else {
+            number_of_increments = Math.ceil(dataset_data["medianDatasetExpression"]);
+        }
+    }
+    // Turn number of increments into a whole number
+    number_of_increments = Math.ceil(number_of_increments);
+
+    if((number_of_increments * increment_value) < 6) {
+        number_of_increments = 6;
+    }
+    if((number_of_increments * increment_value) > 10) {
+        number_of_increments = 10;
+    }
+
+
     probes = probes;
     sample_types = sample_types;
     probe_count = probe_count;
@@ -173,111 +195,99 @@ d3.tsv(data_url,function (error,data){
         split_sort_by_option[1] = "Sample_Type";
     }
 
+    var multi_group = 1;
+    var whiskers_needed = true;
+    var legend_required = "yes";
+    var show_min_y_axis = false;
+
+
 
 
     //The main options for the graph
     var options = {
-            sample_type_order:dataset_data["sampleTypeDisplayOrder"],// "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
-            horizontal_lines: [["Detection Threshold "+dataset_data["detectionThreshold"] , "green",dataset_data["detectionThreshold"]], ["Median "+dataset_data["medianDatasetExpression"], , dataset_data["medianDatasetExpression"]]],
-            y_axis_title: dataset_data["y_axis_label"],
+        split_sort_by_option: split_sort_by_option,
+        multi_group: multi_group, // Indicates there is only 1 group on the x axis (probes)
+        legend_list: {name: "probes", list: probes_types},
+        colour_array: probe_colour, //probe_colours=
+        /******** Options for Sizing *****************************************/
+        legend_padding: 190,
+        legend_rect_size: 20,
+        height: 400,
+        width: 900,
+        margin:{top: 200, left: 100, bottom: 300, right: 250},
+        initial_padding: 10,
+        x_axis_label_padding: 10,//padding for the x axis labels (how far below the graph)
+        text_size: "12px",
+        title_text_size: "16px",
 
-            split_sort_by_option: split_sort_by_option,//add
-            sortByOption: sortByOption,//add
-            colour_array: probe_colour,//add
-            multi_group: 1, //add
-            legend_list: {name: "probes", list: probes_types},// add from Isha's code
-            increment: 0.2,//number_of_increments * increment_value, // To double the number of increments ( mutliply by 2, same for
+        //tooltip_multiview: tooltip_multiview,
+        //increment: 0.2,
+        increment: number_of_increments * increment_value, // To double the number of increments ( mutliply by 2, same for
+        // reducing. Number of increments is how many numbers are displayed on the y axis. For none to
+        // be displayed multiply by 0
+        // changes masde by isha to show horizontal and vertical lines
+        display: {hoverbars: "no", error_bars: "yes", legend: legend_required, horizontal_lines: "yes", legend_hover: "no", vertical_lines: "yes", x_axis_labels: "yes", y_axis_title: "yes", horizontal_grid_lines: "yes"},
 
-	        // Ariane -> added options for anything which as global previously
-            //ref_name: "legend",
-            ref_name: ref_name,
+        circle_radius: 2,  // for the scatter points
+        hover_circle_radius: 10,
+        /*********** End of sizing options **********************************/
 
-            // Ariane -> any options edited to get up and running
-
-            //horizontal_lines: [["Detection Threshold ", "green", 8], ["Median ", "blue",6]],
-            //add
-
-            //sortByOption: "Sample_Type",//sortByOption, NEED TO CHANGE BACK FOR ISHA
-            show_min_y_axis: false,//show_min_y_axis,NEED TO CHANGE BACK FOR ISHA isha
-            //sample_type_order: "DermalFibroblast, hONS",
-            /*dataset_data["sampleTypeDisplayOrder"],// "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM
-hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral
-midbrain neural progenitor cells,Olfactory lamina propria derived stem
-cells",*/
-
-            /******** Options for Sizing *****************************************/
-            legend_padding: 190,
-            legend_rect_size: 20,
-    	      height: 400,
-            width: 900,//graph_box_width, ISHA
-            margin:{top: 200, left: 100, bottom: 300, right: 250},
-            initial_padding: 10,
-            x_axis_label_padding: 10,//padding for the x axis labels (how far below the graph)
-            text_size: "12px",
-            title_text_size: "16px",
-            // changes masde by isha to show horizontal and vertical lines
-            display: {hoverbars: "no", error_bars: "yes", legend: "yes", horizontal_lines: "yes", legend_hover: "no", vertical_lines: "yes", x_axis_labels: "yes", y_axis_title: "yes", horizontal_grid_lines: "yes"},
-
-            circle_radius: 2,  // for the scatter points
-            hover_circle_radius: 10,
-            /*********** End of sizing options **********************************/
-
-            background_colour: "white",
-            background_stroke_colour:  "black",
-            background_stroke_width:  "1px",
-            colour: colours,
-          	font_style: "Arial",
-          	grid_colour: "black",
-          	grid_opacity: 0.5,
-          	y_label_text_size: "14px",
-          	y_label_x_val: 40,
-            data: data,
-            //sortByOption: "Sample_Type",//sortByOption, NEED TO CHANGE BACK FOR ISHA
-            show_min_y_axis: false,//show_min_y_axis,NEED TO CHANGE BACK FOR ISHA isha
-            // eq. yes for x_axis labels indicates the user wants labels on the x axis (sample types)
-            // indicate yes or no to each of the display options below to choose which are displayed on the graph
-            domain_colours : ["#FFFFFF","#7f3f98"],
-            error_bar_width:5,
-    	    error_stroke_width: "1px",
-            error_dividor:100,//100 means error bars will not show when error < 1% value
-            //horizontal lines takes a name, colour and the yvalue. If no colour is given one is chosen at random
-		    horizontal_line_value_column: 'value',
-            //to have horizontal grid lines = width (to span accross the grid), otherwise = 0
-            horizontal_grid_lines: width,
-            legend_class: "legend",
-            legend_range: [0,100],
-            line_stroke_width: "2px",
-           //default number of colours iis 39 (before it reitterates over it again)
-            number_of_colours: 39,
-            //2 is the chosen padding. On either side there will be padding = to the interval between the points
-            //1 gives 1/2 the interval on either side etc.
-            padding: 2,
-            probe_count: probe_count,
-            probes: probes,
-            //sample type order indicates whether or not the samplese need to be represented in a specific order
-            //if no order is given then the order from the data set is taken
-            disease_state_order: "none", //Order of the disease state on the x axis
-
-            //add
-
-            sample_types: sample_types,
-            // Can fit 4 subtitles currently
-            subtitles: [subtitle1,subtitle2],
-            stroke_width:"3px",
-            target: target,
-            title: title,
-            title_class: "title",
-            tip: tip,//second tip to just display the sample type
-            tooltip: tooltip, // using d3-tips
-            //tooltip1: tooltip1, // using d3-tips unique_id: "chip_id",
-            watermark:"https://www.stemformatics.org/img/logo.gif",
-            x_axis_text_angle:-45,
-            x_axis_title: "Samples",
-            x_column: 'Sample_ID',
-            x_middle_title: 500,
-            //y_axis_title: "log",//dataset_data["y_axis_label"], ISHA
-
-            y_column: 'Expression_Value'
+        background_colour: "white",
+        background_stroke_colour:  "black",
+        background_stroke_width:  "1px",
+        colour: colours,
+        font_style: "Arial",
+        grid_colour: "black",
+        ref_name: ref_name,
+        grid_opacity: 0.5,
+        y_label_text_size: "14px",
+        y_label_x_val: 40,
+        data: data,
+        whiskers_needed: whiskers_needed,
+        sortByOption: sortByOption,
+        show_min_y_axis: show_min_y_axis,
+        // eq. yes for x_axis labels indicates the user wants labels on the x axis (sample types)
+        // indicate yes or no to each of the display options below to choose which are displayed on the graph
+        domain_colours : ["#FFFFFF","#7f3f98"],
+        error_bar_width:5,
+        error_stroke_width: "1px",
+        error_dividor:100,//100 means error bars will not show when error < 1% value
+        //horizontal lines takes a name, colour and the yvalue. If no colour is given one is chosen at random
+        horizontal_lines: [["Detection Threshold "+dataset_data["detectionThreshold"] , "green",dataset_data["detectionThreshold"]], ["Median "+dataset_data["medianDatasetExpression"], , dataset_data["medianDatasetExpression"]]],
+        horizontal_line_value_column: 'value',
+        //to have horizontal grid lines = width (to span accross the grid), otherwise = 0
+        horizontal_grid_lines: width,
+        legend_class: "legend",
+        legend_range: [0,100],
+        line_stroke_width: "2px",
+        //default number of colours iis 39 (before it reitterates over it again)
+        number_of_colours: 39,
+        //2 is the chosen padding. On either side there will be padding = to the interval between the points
+        //1 gives 1/2 the interval on either side etc.
+        padding: 2,
+        probe_count: probe_count,
+        probes: probes_types,
+        //sample type order indicates whether or not the samplese need to be represented in a specific order
+        //if no order is given then the order from the data set is taken
+        disease_state_order: "none", //Order of the disease state on the x axis
+        sample_type_order:dataset_data["sampleTypeDisplayOrder"],// "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
+        sample_types: sample_types,
+        // Can fit 4 subtitles currently
+        subtitles: [subtitle1,subtitle2],
+        stroke_width:"3px",
+        target: target,
+        title: title,
+        title_class: "title",
+        tip: tip,//second tip to just display the sample type
+        tooltip: tooltip, // using d3-tips
+        //tooltip1: tooltip1, // using d3-tips unique_id: "chip_id",
+        watermark:"https://www.stemformatics.org/img/logo.gif",
+        x_axis_text_angle:-45,
+        x_axis_title: "Samples",
+        x_column: 'Sample_ID',
+        x_middle_title: 500,
+        y_axis_title: dataset_data["y_axis_label"],
+        y_column: 'Expression_Value'
     }
 
     var instance = new app(options);
