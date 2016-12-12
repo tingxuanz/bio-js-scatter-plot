@@ -6,15 +6,30 @@ function round_to_two_decimal_places(num){
 }
 
 //An array of colours which are used for the different probes
+/*
 var colours = ["DarkOrchid", "Orange", "DodgerBlue", "Blue","BlueViolet","Brown", "Deeppink", "BurlyWood","CadetBlue",
 "Chartreuse","Chocolate","Coral","CornflowerBlue","Crimson","Cyan", "Red", "DarkBlue",
 "DarkGoldenRod","DarkGray", "Tomato", "Violet","DarkGreen","DarkKhaki","DarkMagenta","DarkOliveGreen",
 "DarkOrange","DarkOrchid","DarkRed","DarkSalmon","DarkSlateBlue","DarkTurquoise",
 "DarkViolet","DeepPink","DeepSkyBlue","DodgerBlue","FireBrick","ForestGreen","Fuchsia",
 "Gold","GoldenRod","Green","GreenYellow","HotPink","IndianRed","Indigo"];
+*/
+var dataset_data = {"detectionThreshold": "6.2", "probeColours": ["red", "Orange", "DodgerBlue", "Blue", "BlueViolet", "Brown", "Deeppink", "BurlyWood", "CadetBlue", "Chartreuse", "Chocolate", "Coral", "CornflowerBlue", "Crimson", "Cyan", "Red", "DarkBlue", "DarkGoldenRod", "DarkGray", "Tomato", "Violet", "DarkGreen", "DarkKhaki", "DarkMagenta", "DarkOliveGreen", "DarkOrange", "DarkOrchid", "DarkRed", "DarkSalmon", "DarkSlateBlue", "DarkTurquoise", "DarkViolet", "DeepPink", "DeepSkyBlue", "DodgerBlue", "FireBrick", "ForestGreen", "Fuchsia", "Gold", "GoldenRod", "Green", "GreenYellow", "HotPink", "IndianRed", "Indigo"], "sampleTypeDisplayGroupColours": {"0": {"0": "#9932cc", "1": "#7a28a3", "2": "#5b1e7a", "3": "#3c1451", "4": "#1d0a28", "5": "#000000"}, "1": {"0": "#ffa500", "1": "#d48900", "2": "#a96d00", "3": "#7e5100", "4": "#533500", "5": "#281900", "6": "#000000"}, "2": {"0": "#1e90ff", "1": "#1460aa", "2": "#0a3055", "3": "#000000"}, "3": {"0": "#0000ff", "1": "#0000e2", "2": "#0000c5", "3": "#0000a8", "4": "#00008b", "5": "#00006e", "6": "#000051", "7": "#000034", "8": "#000017", "9": "#000000"}, "4": {"0": "#8a2be2", "1": "#5c1c96", "2": "#2e0d4a", "3": "#000000"}, "5": {"0": "#a52a2a", "1": "#8d2424", "2": "#751e1e", "3": "#5d1818", "4": "#451212", "5": "#2d0c0c", "6": "#150606", "7": "#000000"}, "6": {"0": "#8b008b", "1": "#6f006f", "2": "#530053", "3": "#370037", "4": "#1b001b", "5": "#000000"}, "7": {"0": "#ff1493", "1": "#df1180", "2": "#bf0e6d", "3": "#9f0b5a", "4": "#7f0847", "5": "#5f0534", "6": "#3f0221", "7": "#1f-10e", "8": "#000000"}}, "Title": "Densely interconnected transcriptional circuits control cell states in human hematopoiesis", "y_axis_label": "Log2 Expression", "medianDatasetExpression": "8.81", "sampleTypeDisplayOrder": "Hematopoietic Stem Cell CD133+ CD34(dim),Hematopoietic Stem Cell CD38- CD34+,Common Myeloid Progenitor,Megakaryocyte/Erythroid Progenitor,Erythroid CD34+ CD71+ GlyA-,Erythroid CD34- CD71+ GlyA-,Erythroid CD34- CD71+ GlyA+,Erythroid CD34- CD71(lo) GlyA+,Erythroid CD34- CD71- GlyA+,Colony Forming Unit-Megakaryocytic (CFU-MK),Megakaryocyte,Granulocyte-Monocyte Progenitor,Colony Forming Unit-Granulocyte (CFU-G),Neutrophilic Metamyelocyte,Neutrophil,Colony Forming Unit-Monocyte (CFU-M),Monocyte,Eosinophil,Basophil,Myeloid Dendritic cell,Plasmacytoid Dendritic cell,Early B-cell,Pro B-cell,Naive B-cell,Mature B-cell (class able to switch),Mature B-cell,Mature B-cell (class switched),Mature NK Cell CD56- CD16+ CD3-,Mature NK Cell CD56+ CD16+ CD3-,Mature NK Cell CD56- CD16- CD3-,NKT,Naive T-cell CD8+,Effective Memory RA T-cell CD8+,Effective Memory T-cell CD8+,Central Memory T-cell CD8+,Naive T-cell CD4+,Effective Memory T-cell CD4+,Central Memory T-cell CD4+", "limitSortBy": "Sample Type", "cellsSamplesAssayed": "38 distinct hematopoietic cell states based on cell surface marker expression, representing hematopoietic stem and progenitor cells, terminally differentiated cells, and intermediate states", "sampleTypeDisplayGroups": "{\"Hematopoietic Stem Cell CD133+ CD34(dim)\":0,\"Hematopoietic Stem Cell CD38- CD34+\":0,\"Common Myeloid Progenitor\":0,\"Megakaryocyte/Erythroid Progenitor\":0,\"Erythroid CD34+ CD71+ GlyA-\":1,\"Erythroid CD34- CD71+ GlyA-\":1,\"Erythroid CD34- CD71+ GlyA+\":1,\"Erythroid CD34- CD71(lo) GlyA+\":1,\"Erythroid CD34- CD71- GlyA+\":1,\"Colony Forming Unit-Megakaryocytic (CFU-MK)\":2,\"Megakaryocyte\":2,\"Granulocyte-Monocyte Progenitor\":3,\"Colony Forming Unit-Granulocyte (CFU-G)\":3,\"Neutrophilic Metamyelocyte\":3,\"Neutrophil\":3,\"Colony Forming Unit-Monocyte (CFU-M)\":3,\"Monocyte\":3,\"Eosinophil\":3,\"Basophil\":3,\"Myeloid Dendritic cell\":4,\"Plasmacytoid Dendritic cell\":4,\"Early B-cell\":5,\"Pro B-cell\":5,\"Naive B-cell\":5,\"Mature B-cell (class able to switch)\":5,\"Mature B-cell\":5,\"Mature B-cell (class switched)\":5,\"Mature NK Cell CD56- CD16+ CD3-\":6,\"Mature NK Cell CD56+ CD16+ CD3-\":6,\"Mature NK Cell CD56- CD16- CD3-\":6,\"NKT\":6,\"Naive T-cell CD8+\":7,\"Effective Memory RA T-cell CD8+\":7,\"Effective Memory T-cell CD8+\":7,\"Central Memory T-cell CD8+\":7,\"Naive T-cell CD4+\":7,\"Effective Memory T-cell CD4+\":7,\"Central Memory T-cell CD4+\":7}"};
+var colours = dataset_data["probeColours"];
 
+var setup_colours_for_group = function (array_group, new_array, number_of_colours, colours) {
+    var count = 0;
+    for (i = 0; i< array_group.length; i++){
+        if (count == number_of_colours){
+            count = 0;
+        }
+        new_array[array_group[i]] = colours[count];
+        count ++;
+      }
+    return new_array;
+}
 
-// tip which is displayed when hovering over a collumn. Displays the sample type 
+// tip which is displayed when hovering over a collumn. Displays the sample type
 //of the collumn
 var tip = d3.tip()
     .attr('class', 'd3-tip')
@@ -35,12 +50,12 @@ var tooltip = d3.tip()
         Expression_Value = round_to_two_decimal_places(d[y_column]);
         lwr = round_to_two_decimal_places(d.Expression_Value - d.Standard_Deviation);
         upr = round_to_two_decimal_places(d.Expression_Value + d.Standard_Deviation);
-        temp = 
+        temp =
             "Probe: " + d.Probe + "<br/>" +
             "Sample: " + d.Sample_ID +"<br/>"+
             "Log2 Expression: " + Expression_Value + " [" + lwr + ";" + upr +"]<br/>"
            // "MSC predicted "+msc_call+"/"+total+" iterations<br/>"
-        return temp; 
+        return temp;
     });
 
 //The url's to the data displayed
@@ -52,15 +67,15 @@ data_url= '../data/ds_id_5003_scatter_gata3.tsv';
  * Also sets relevent options based on the data passed in (for example
  * calculating the min and max values of the graph */
 d3.tsv(data_url,function (error,data){
-    max = 0; 
+    max = 0;
     min = 0;
     number_of_increments = 0;
-    count = 0; 
+    count = 0;
     //make an array to store the number of probes for the legend
     probes_types = new Array();
     probes = new Array();
     probe_count = 0;
-    //Saving the sample types and corrosponding id to use when 
+    //Saving the sample types and corrosponding id to use when
     //itterating over for the hovering over the ample types and altering the scatter
     //points for that sample type
     sample_types = new Array();
@@ -90,7 +105,7 @@ d3.tsv(data_url,function (error,data){
             probe_count++;
         }
         if($.inArray(d.Sample_Type, sample_type_array) == -1) {
-            //Gives each sample type a unique id so that they can be grouped 
+            //Gives each sample type a unique id so that they can be grouped
             //And highlighted together
             sample_type_array.push(d.Sample_Type);
             sample_types[d.Sample_Type] = sample_type_count;
@@ -100,8 +115,9 @@ d3.tsv(data_url,function (error,data){
         count++;
 
     });
-    //USed to set up the probes and their corrosponding 
+    //USed to set up the probes and their corrosponding
     //colours
+    /*
     for(i = 0; i < probe_count; i++){
         probes[i] = [];
         probes[i][0] = probes_types[i];
@@ -111,7 +127,14 @@ d3.tsv(data_url,function (error,data){
         }
         probes[i][1] = colours[colour_count];
         colour_count++;
-    }
+    }*/
+    var probe_colour = {};//new Array();
+    probe_colour = setup_colours_for_group(probes_types.sort(), probe_colour,
+        number_of_colours, colours);
+    var sample_colour =  {};//new Array();
+    sample_colour = setup_colours_for_group(sample_type_array.sort(), sample_colour,
+        number_of_colours, colours);
+
     // The number of increments is how large the increment size is for the
     // y axis (i.e. 1 per whole numner etc) e.g. or an increment per number = max - min
     number_of_increments = max - min;
@@ -121,8 +144,8 @@ d3.tsv(data_url,function (error,data){
     sample_types = sample_types;
     probe_count = probe_count;
     title = "Scatter Plot";
-    subtitle1 = "Subtitle"
-    subtitle2 = "Subtitle"
+    subtitle1 = dataset_data["Title"];
+    subtitle2 = dataset_data["cellsSamplesAssayed"];
     target = rootDiv;
 
     // can always use just a straight value, but it's nicer when you calculate
@@ -133,30 +156,61 @@ d3.tsv(data_url,function (error,data){
         width = 1000;
     }
 
+    //add
+    var ref_name = {};
+    var ref_type = "ensemblID";
+    var symbol = "GATA3";
+    if(ref_type == 'ensemblID') {
+      ref_name[symbol] = symbol;
+    }
+
+    var sortByOption = "Smaple_Type";
+
+    var split_sort_by_option = sortByOption.split(',');
+    if (split_sort_by_option[0] == "Sample Type") {
+        split_sort_by_option[0] = "Sample_Type";
+    } else if (split_sort_by_option[1] == "Sample Type") {
+        split_sort_by_option[1] = "Sample_Type";
+    }
+
+
+
     //The main options for the graph
     var options = {
+            sample_type_order:dataset_data["sampleTypeDisplayOrder"],// "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral midbrain neural progenitor cells,Olfactory lamina propria derived stem cells",
+            horizontal_lines: [["Detection Threshold "+dataset_data["detectionThreshold"] , "green",dataset_data["detectionThreshold"]], ["Median "+dataset_data["medianDatasetExpression"], , dataset_data["medianDatasetExpression"]]],
+            y_axis_title: dataset_data["y_axis_label"],
+
+            split_sort_by_option: split_sort_by_option,//add
+            sortByOption: sortByOption,//add
+            colour_array: probe_colour,//add
+            multi_group: 1, //add
+            legend_list: {name: "probes", list: probes_types},// add from Isha's code
             increment: 0.2,//number_of_increments * increment_value, // To double the number of increments ( mutliply by 2, same for
 
 	        // Ariane -> added options for anything which as global previously
-            ref_name: "legend",
+            //ref_name: "legend",
+            ref_name: ref_name,
 
             // Ariane -> any options edited to get up and running
 
-            horizontal_lines: [["Detection Threshold ", "green", 8], ["Median ", "blue",
-6]],
-            sortByOption: "Sample_Type",//sortByOption, NEED TO CHANGE BACK FOR ISHA
+            //horizontal_lines: [["Detection Threshold ", "green", 8], ["Median ", "blue",6]],
+            //add
+
+            //sortByOption: "Sample_Type",//sortByOption, NEED TO CHANGE BACK FOR ISHA
             show_min_y_axis: false,//show_min_y_axis,NEED TO CHANGE BACK FOR ISHA isha
-            sample_type_order: "DermalFibroblast, hONS", /*dataset_data["sampleTypeDisplayOrder"],// "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM
+            //sample_type_order: "DermalFibroblast, hONS",
+            /*dataset_data["sampleTypeDisplayOrder"],// "DermalFibroblast, hONS", // "BM MSC,BM erythropoietic cells CD235A+,BM granulopoietic cells CD11B+,BM
 hematopoietic cells CD45+,Developing cortex neural progenitor cells,Ventral
 midbrain neural progenitor cells,Olfactory lamina propria derived stem
 cells",*/
 
             /******** Options for Sizing *****************************************/
-            legend_padding: 0,
-            legend_rect_size: 10,
+            legend_padding: 190,
+            legend_rect_size: 20,
     	      height: 400,
-            width: 600,//graph_box_width, ISHA
-            margin:{top: 50, left: 50, bottom: 100, right: 200},
+            width: 900,//graph_box_width, ISHA
+            margin:{top: 200, left: 100, bottom: 300, right: 250},
             initial_padding: 10,
             x_axis_label_padding: 10,//padding for the x axis labels (how far below the graph)
             text_size: "12px",
@@ -178,7 +232,7 @@ cells",*/
           	y_label_text_size: "14px",
           	y_label_x_val: 40,
             data: data,
-            sortByOption: "Sample_Type",//sortByOption, NEED TO CHANGE BACK FOR ISHA
+            //sortByOption: "Sample_Type",//sortByOption, NEED TO CHANGE BACK FOR ISHA
             show_min_y_axis: false,//show_min_y_axis,NEED TO CHANGE BACK FOR ISHA isha
             // eq. yes for x_axis labels indicates the user wants labels on the x axis (sample types)
             // indicate yes or no to each of the display options below to choose which are displayed on the graph
@@ -203,9 +257,12 @@ cells",*/
             //sample type order indicates whether or not the samplese need to be represented in a specific order
             //if no order is given then the order from the data set is taken
             disease_state_order: "none", //Order of the disease state on the x axis
+
+            //add
+
             sample_types: sample_types,
             // Can fit 4 subtitles currently
-            subtitles: [subtitle1],
+            subtitles: [subtitle1,subtitle2],
             stroke_width:"3px",
             target: target,
             title: title,
@@ -218,7 +275,8 @@ cells",*/
             x_axis_title: "Samples",
             x_column: 'Sample_ID',
             x_middle_title: 500,
-            y_axis_title: "log",//dataset_data["y_axis_label"], ISHA
+            //y_axis_title: "log",//dataset_data["y_axis_label"], ISHA
+
             y_column: 'Expression_Value'
     }
 
@@ -230,5 +288,4 @@ cells",*/
     // Extract the data as SVG text string
     var svg_xml = (new XMLSerializer).serializeToString(svg);
 
-}); 
-
+});
