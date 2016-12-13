@@ -5,7 +5,7 @@ function round_to_two_decimal_places(num){
     return new_num;
 }
 
-
+// dataset_data is the dataset's metadata
 var dataset_data = {"detectionThreshold": "6.2", "probeColours": ["red", "Orange", "DodgerBlue", "Blue", "BlueViolet", "Brown", "Deeppink", "BurlyWood", "CadetBlue", "Chartreuse", "Chocolate", "Coral", "CornflowerBlue", "Crimson", "Cyan", "Red", "DarkBlue", "DarkGoldenRod", "DarkGray", "Tomato", "Violet", "DarkGreen", "DarkKhaki", "DarkMagenta", "DarkOliveGreen", "DarkOrange", "DarkOrchid", "DarkRed", "DarkSalmon", "DarkSlateBlue", "DarkTurquoise", "DarkViolet", "DeepPink", "DeepSkyBlue", "DodgerBlue", "FireBrick", "ForestGreen", "Fuchsia", "Gold", "GoldenRod", "Green", "GreenYellow", "HotPink", "IndianRed", "Indigo"], "sampleTypeDisplayGroupColours": {"0": {"0": "#9932cc", "1": "#7a28a3", "2": "#5b1e7a", "3": "#3c1451", "4": "#1d0a28", "5": "#000000"}, "1": {"0": "#ffa500", "1": "#d48900", "2": "#a96d00", "3": "#7e5100", "4": "#533500", "5": "#281900", "6": "#000000"}, "2": {"0": "#1e90ff", "1": "#1460aa", "2": "#0a3055", "3": "#000000"}, "3": {"0": "#0000ff", "1": "#0000e2", "2": "#0000c5", "3": "#0000a8", "4": "#00008b", "5": "#00006e", "6": "#000051", "7": "#000034", "8": "#000017", "9": "#000000"}, "4": {"0": "#8a2be2", "1": "#5c1c96", "2": "#2e0d4a", "3": "#000000"}, "5": {"0": "#a52a2a", "1": "#8d2424", "2": "#751e1e", "3": "#5d1818", "4": "#451212", "5": "#2d0c0c", "6": "#150606", "7": "#000000"}, "6": {"0": "#8b008b", "1": "#6f006f", "2": "#530053", "3": "#370037", "4": "#1b001b", "5": "#000000"}, "7": {"0": "#ff1493", "1": "#df1180", "2": "#bf0e6d", "3": "#9f0b5a", "4": "#7f0847", "5": "#5f0534", "6": "#3f0221", "7": "#1f-10e", "8": "#000000"}}, "Title": "Densely interconnected transcriptional circuits control cell states in human hematopoiesis", "y_axis_label": "Log2 Expression", "medianDatasetExpression": "8.81", "sampleTypeDisplayOrder": "Hematopoietic Stem Cell CD133+ CD34(dim),Hematopoietic Stem Cell CD38- CD34+,Common Myeloid Progenitor,Megakaryocyte/Erythroid Progenitor,Erythroid CD34+ CD71+ GlyA-,Erythroid CD34- CD71+ GlyA-,Erythroid CD34- CD71+ GlyA+,Erythroid CD34- CD71(lo) GlyA+,Erythroid CD34- CD71- GlyA+,Colony Forming Unit-Megakaryocytic (CFU-MK),Megakaryocyte,Granulocyte-Monocyte Progenitor,Colony Forming Unit-Granulocyte (CFU-G),Neutrophilic Metamyelocyte,Neutrophil,Colony Forming Unit-Monocyte (CFU-M),Monocyte,Eosinophil,Basophil,Myeloid Dendritic cell,Plasmacytoid Dendritic cell,Early B-cell,Pro B-cell,Naive B-cell,Mature B-cell (class able to switch),Mature B-cell,Mature B-cell (class switched),Mature NK Cell CD56- CD16+ CD3-,Mature NK Cell CD56+ CD16+ CD3-,Mature NK Cell CD56- CD16- CD3-,NKT,Naive T-cell CD8+,Effective Memory RA T-cell CD8+,Effective Memory T-cell CD8+,Central Memory T-cell CD8+,Naive T-cell CD4+,Effective Memory T-cell CD4+,Central Memory T-cell CD4+", "limitSortBy": "Sample Type", "cellsSamplesAssayed": "38 distinct hematopoietic cell states based on cell surface marker expression, representing hematopoietic stem and progenitor cells, terminally differentiated cells, and intermediate states", "sampleTypeDisplayGroups": "{\"Hematopoietic Stem Cell CD133+ CD34(dim)\":0,\"Hematopoietic Stem Cell CD38- CD34+\":0,\"Common Myeloid Progenitor\":0,\"Megakaryocyte/Erythroid Progenitor\":0,\"Erythroid CD34+ CD71+ GlyA-\":1,\"Erythroid CD34- CD71+ GlyA-\":1,\"Erythroid CD34- CD71+ GlyA+\":1,\"Erythroid CD34- CD71(lo) GlyA+\":1,\"Erythroid CD34- CD71- GlyA+\":1,\"Colony Forming Unit-Megakaryocytic (CFU-MK)\":2,\"Megakaryocyte\":2,\"Granulocyte-Monocyte Progenitor\":3,\"Colony Forming Unit-Granulocyte (CFU-G)\":3,\"Neutrophilic Metamyelocyte\":3,\"Neutrophil\":3,\"Colony Forming Unit-Monocyte (CFU-M)\":3,\"Monocyte\":3,\"Eosinophil\":3,\"Basophil\":3,\"Myeloid Dendritic cell\":4,\"Plasmacytoid Dendritic cell\":4,\"Early B-cell\":5,\"Pro B-cell\":5,\"Naive B-cell\":5,\"Mature B-cell (class able to switch)\":5,\"Mature B-cell\":5,\"Mature B-cell (class switched)\":5,\"Mature NK Cell CD56- CD16+ CD3-\":6,\"Mature NK Cell CD56+ CD16+ CD3-\":6,\"Mature NK Cell CD56- CD16- CD3-\":6,\"NKT\":6,\"Naive T-cell CD8+\":7,\"Effective Memory RA T-cell CD8+\":7,\"Effective Memory T-cell CD8+\":7,\"Central Memory T-cell CD8+\":7,\"Naive T-cell CD4+\":7,\"Effective Memory T-cell CD4+\":7,\"Central Memory T-cell CD4+\":7}"};
 var colours = dataset_data["probeColours"];
 
@@ -107,19 +107,8 @@ d3.tsv(data_url,function (error,data){
         count++;
 
     });
-    //USed to set up the probes and their corrosponding
-    //colours
-    /*
-    for(i = 0; i < probe_count; i++){
-        probes[i] = [];
-        probes[i][0] = probes_types[i];
-      //  colour_count++;
-        if(colour_count == number_of_colours){
-            colour_count = 0;
-        }
-        probes[i][1] = colours[colour_count];
-        colour_count++;
-    }*/
+
+    /* set up colour arrays*/
     var probe_colour = {};//new Array();
     probe_colour = setup_colours_for_group(probes_types.sort(), probe_colour,
         number_of_colours, colours);
@@ -129,9 +118,7 @@ d3.tsv(data_url,function (error,data){
 
     // The number of increments is how large the increment size is for the
     // y axis (i.e. 1 per whole numner etc) e.g. or an increment per number = max - min
-    //number_of_increments = max - min;
-    // Turn number of increments into a whole number
-    //number_of_increments |= 0;
+
     number_of_increments = max - min;
     var increment_value = 1;
     // this is when max-min is 0
@@ -158,8 +145,11 @@ d3.tsv(data_url,function (error,data){
     sample_types = sample_types;
     probe_count = probe_count;
     title = "Scatter Plot";
+
+    //set subtitle according to dataset metadata
     subtitle1 = dataset_data["Title"];
     subtitle2 = dataset_data["cellsSamplesAssayed"];
+
     target = rootDiv;
 
     // can always use just a straight value, but it's nicer when you calculate
@@ -170,7 +160,7 @@ d3.tsv(data_url,function (error,data){
         width = 1000;
     }
 
-    //add
+    /*** Following are some variables which are used to set options***/
     var ref_name = {};
     var ref_type = "ensemblID";
     var symbol = "GATA3";
@@ -191,12 +181,22 @@ d3.tsv(data_url,function (error,data){
     var whiskers_needed = true;
     var legend_required = "yes";
     var show_min_y_axis = false;
-
+    //var scaling_required = "no";
+    /*** end of declaring variables***/
 
 
 
     //The main options for the graph
     var options = {
+        /*scaling_required is used in index.js, general.js, axis.js
+        I think it's better to set-up it in options.
+        Need to discuss this with Isha*/
+        scaling_required: "no",
+        //ref_type is the same as scaling_required
+        ref_type: ref_type,
+        //symbol is the same as scaling_required
+        symbol: symbol,
+
         split_sort_by_option: split_sort_by_option,
         multi_group: multi_group, // Indicates there is only 1 group on the x axis (probes)
         legend_list: {name: "probes", list: probes_types},
